@@ -294,7 +294,7 @@ div[filter]:hover .text {
     padding-top: 165px;
     padding-bottom: 125px;
     color: #000;
-    background: #fff;
+    background: #00897b;
     text-align: center;
 }
 .team h4{
@@ -346,7 +346,7 @@ div[filter]:hover .text {
 }
 
 .dots-style button{
-    background: #00897b;
+    background: #3949ab;
     border: none;
     border-radius: 50%;
     font-size: 0;
@@ -418,6 +418,7 @@ div[filter]:hover .text {
     border: none;
     background: #00897b;
 }
+
 
 .footer{
     padding-top: 165px;
@@ -512,6 +513,240 @@ div[filter]:hover .text {
     display: none;
 }
 
+
+
+/*User card*/
+/*header*/
+.user_card_header{
+    color: white;
+    background-size: cover;
+    background-position: 0 100;
+    background-color: #00897b;    
+}
+
+.avatar{
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.usercard__text{
+    display: inline;
+    font-size: 30px;
+    color: white;
+}
+
+.progres{
+    display: inline;
+    font-size: 30px;
+    padding-right: 0;
+}
+
+.progres p{
+    text-align: right;
+}
+/*profile information*/
+
+.profile{
+    padding-top: 40px;
+    background-color: #fff;
+    color: #868686;
+}
+.profile p{
+    font-size: 25px;
+    vertical-align: middle;
+    display: inline;
+}
+.profile input{
+
+    width: 100%;
+}
+.profile textarea{
+    resize: none;
+    width: 100%;
+    height: 100px;
+}
+
+.profile_button{
+    padding: 10px 25px;
+    margin:  0 10px;
+    color: white;
+    transition: 0.3s;
+    background: #00897b;
+    border: 2px solid #00897b;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 150px;
+    transition: 0.3s;
+}
+
+.profile_button:hover{
+    background: transparent;
+    border: 2px dotted black;
+    color: black;
+}
+
+/*articles*/
+
+.articles{
+    padding-top: 40px;
+    color: #868686;
+    background-color: #f0f1f1;
+}
+
+.article{
+    background-color: #fff;
+    margin-top: 30px;
+
+}
+
+.article_author{
+    margin-top: 20px;
+}
+.articles_avatar{
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.articles__header{
+    font-size: 30px;
+    vertical-align: middle;
+    display: inline;
+    color: black;
+    margin-left: 20px;
+
+}
+
+.article__content{
+    padding-left: 20px;
+    color: #000;
+}
+.article__content img{
+    padding-left: 20px;
+    width: 400px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.article__content button{ 
+    margin-bottom: 20px;
+    color: white;
+    transition: 0.3s;
+    background: #00897b;
+    border: 2px solid #00897b;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 200px;
+    transition: 0.3s;
+}
+
+.article__content button:hover{
+    background: transparent;
+    border: 2px dotted black;
+    color: black;
+}
+
+.tag{
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5rem;
+    text-decoration: none;
+    display: inline-flex;
+}
+
+.tag a{
+    color: #868686;
+    text-decoration: none;
+}
+
+.tag span{
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.navigation{
+    margin-top: 30px;
+}
+
+.code{
+    white-space: pre-wrap;
+}
+
+
+.comment_header{
+    margin-top: 20px;
+    color: white;
+    background-size: cover;
+    background-position: 0 100;
+    background-color: #00897b;    
+}
+
+.comment{
+    background-color: #fff;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    color: #000;
+}
+
+.comment img{
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.comment p{
+    margin-left: 50px;
+    margin-top: 7px;
+}
+
+.comment_footer{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    background-color: #868686;
+    text-align: center;   
+}
+
+.comment_footer textarea{
+    margin-bottom: 10px;
+    resize: none;
+    width: 80%;
+}
+
+.comment_footer button{
+    font-size: 20px;
+    background-color: #00897b;
+    text-transform: uppercase;
+    color: white;
+    padding: 20px 80px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.comment_footer button:hover{
+    opacity: 50%;
+    color: #000;
+}
+
+
+/*lessons*/
+.scroll-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+}
+
 @media screen and (max-width: 1024px) {
     nav{
         display: none;
@@ -539,3 +774,4 @@ div[filter]:hover .text {
         margin-bottom: 20px;
     }
 }
+
