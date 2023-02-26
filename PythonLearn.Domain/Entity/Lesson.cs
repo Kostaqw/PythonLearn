@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PythonLearn.Domain.Entity
 {
-    public class Course
+    public class Lesson
     {
         public int Id { get; set; }
 
@@ -11,11 +11,12 @@ namespace PythonLearn.Domain.Entity
         [MaxLength(60)]
         public string Name { get; set; }
    
+        public bool status { get; set; }
 
-        [ValidateNever]
-        public List<User> Users { get; set; }
+        public List<Element> Elements { get; set; }
 
-        [ValidateNever]
-        public List<Lesson> Lessons { get; set; }
+        public List<LessonComment> LessonComments { get; set; }
+
+        public List<Solution> Solutions { get; set; }
     }
 }

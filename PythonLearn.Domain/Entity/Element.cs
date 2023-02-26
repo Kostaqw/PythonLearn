@@ -22,7 +22,7 @@ namespace PythonLearn.Domain.Entity
         
         public bool status { get; set; }
 
-        public string[] Answers { get; set; }
+        public string Answers { get; set; }
         public List<Lesson> Lessons { get; set; }
     }
 }

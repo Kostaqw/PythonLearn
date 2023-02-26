@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonLearn", "PythonLearn\PythonLearn.csproj", "{FD627E94-DCDB-4160-8B7D-5B8E2B00D1C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonLearn", "PythonLearn\PythonLearn.csproj", "{FD627E94-DCDB-4160-8B7D-5B8E2B00D1C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{552E6603-FC9C-4963-A895-6ECE1E3B7815}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonLearn.Domain", "PythonLearn.Domain\PythonLearn.Domain.csproj", "{6BB8C206-58FC-4B11-B8CD-5F170C8ED058}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{FF2B86AC-295A-42D6-9C94-6CB174725677}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonLearn.DAL", "PythonLearn.DAL\PythonLearn.DAL.csproj", "{DB01FAAF-3691-4B7D-8F7B-BB7713E94031}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +23,21 @@ Global
 		{FD627E94-DCDB-4160-8B7D-5B8E2B00D1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD627E94-DCDB-4160-8B7D-5B8E2B00D1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD627E94-DCDB-4160-8B7D-5B8E2B00D1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB8C206-58FC-4B11-B8CD-5F170C8ED058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB8C206-58FC-4B11-B8CD-5F170C8ED058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB8C206-58FC-4B11-B8CD-5F170C8ED058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB8C206-58FC-4B11-B8CD-5F170C8ED058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB01FAAF-3691-4B7D-8F7B-BB7713E94031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB01FAAF-3691-4B7D-8F7B-BB7713E94031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB01FAAF-3691-4B7D-8F7B-BB7713E94031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB01FAAF-3691-4B7D-8F7B-BB7713E94031}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6BB8C206-58FC-4B11-B8CD-5F170C8ED058} = {552E6603-FC9C-4963-A895-6ECE1E3B7815}
+		{DB01FAAF-3691-4B7D-8F7B-BB7713E94031} = {FF2B86AC-295A-42D6-9C94-6CB174725677}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8438E2BA-EC15-468F-A04B-92265678A92B}

@@ -30,12 +30,8 @@ namespace PythonLearn.Domain.Entity
         [MaxLength(300)]
         public string Password { get; set; }
 
-
         [Required]
         public int RoleId { get; set; }
-
-        [Required]
-        public int CourseId { get; set; }
 
         [ValidateNever]
         public List<Solution> Solutions { get; set; }
