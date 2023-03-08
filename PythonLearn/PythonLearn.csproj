@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PythonLearn.DAL\PythonLearn.DAL.csproj" />
     <ProjectReference Include="..\PythonLearn.Domain\PythonLearn.Domain.csproj" />
+    <ProjectReference Include="..\PythonLearn.Service\PythonLearn.Service.csproj" />
   </ItemGroup>
 
 </Project>

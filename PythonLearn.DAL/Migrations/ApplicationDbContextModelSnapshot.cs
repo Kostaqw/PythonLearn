@@ -304,15 +304,14 @@ namespace PythonLearn.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ArticleId")
-                        .HasColumnType("int");
+                    b.Property<string>("AboutMe")
+                        .IsRequired()
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
                     b.Property<DateTime?>("BirthDay")
                         .IsRequired()
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -342,11 +341,11 @@ namespace PythonLearn.DAL.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<byte[]>("avatar")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
-
-                    b.HasIndex("CourseId");
 
                     b.HasIndex("RoleId");
 
@@ -435,14 +434,6 @@ namespace PythonLearn.DAL.Migrations
 
             modelBuilder.Entity("PythonLearn.Domain.Entity.User", b =>
                 {
-                    b.HasOne("PythonLearn.Domain.Entity.Article", null)
-                        .WithMany("Users")
-                        .HasForeignKey("ArticleId");
-
-                    b.HasOne("PythonLearn.Domain.Entity.Course", null)
-                        .WithMany("Users")
-                        .HasForeignKey("CourseId");
-
                     b.HasOne("PythonLearn.Domain.Entity.Role", null)
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
@@ -465,11 +456,6 @@ namespace PythonLearn.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PythonLearn.Domain.Entity.Article", b =>
-                {
-                    b.Navigation("Users");
-                });
-
             modelBuilder.Entity("PythonLearn.Domain.Entity.ArticleComment", b =>
                 {
                     b.Navigation("Articles");
@@ -478,8 +464,6 @@ namespace PythonLearn.DAL.Migrations
             modelBuilder.Entity("PythonLearn.Domain.Entity.Course", b =>
                 {
                     b.Navigation("Lessons");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("PythonLearn.Domain.Entity.Role", b =>

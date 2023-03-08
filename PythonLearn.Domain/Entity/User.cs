@@ -30,6 +30,11 @@ namespace PythonLearn.Domain.Entity
         [MaxLength(300)]
         public string Password { get; set; }
 
+        [MaxLength(400)]
+        public string AboutMe { get; set; }
+
+        public byte[] avatar { get; set; }
+
         [Required]
         public int RoleId { get; set; }
 

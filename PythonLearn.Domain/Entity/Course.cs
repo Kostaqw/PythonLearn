@@ -13,8 +13,9 @@ namespace PythonLearn.Domain.Entity
         [Required]
         public int LessonId { get; set; }
 
+        /*
         [ValidateNever]
-        public List<User> Users { get; set; }
+        public List<User> Users { get; set; }*/
 
         [ValidateNever]
         public List<Lesson> Lessons { get; set; }

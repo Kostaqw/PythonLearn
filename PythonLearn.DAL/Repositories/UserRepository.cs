@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PythonLearn.Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PythonLearn.DAL.Repositories
 {
@@ -64,6 +59,11 @@ namespace PythonLearn.DAL.Repositories
             {
                 user.Password = entity.Password;
             }
+            if (!string.IsNullOrEmpty(entity.AboutMe))
+            {
+                user.AboutMe = entity.AboutMe;
+            }
+            user.avatar = entity.avatar;
 
             await _context.SaveChangesAsync();
         }
@@ -72,6 +72,8 @@ namespace PythonLearn.DAL.Repositories
 
         public async Task<User?> GetAsync(int id)=> await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
 
-        
+        public async Task<List<User>?> GetByNameAsync(string name) => await _context.Users.Where(x => x.Name == name).ToListAsync();
+        public async Task<List<User>?> GetBySecondNameAsync(string secondName) => await _context.Users.Where(x => x.SecondName== secondName).ToListAsync();
+
     }
 }

@@ -12,8 +12,8 @@ using PythonLearn.DAL;
 namespace PythonLearn.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230226193218_m")]
-    partial class m
+    [Migration("20230304130952_test2")]
+    partial class test2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -307,8 +307,10 @@ namespace PythonLearn.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ArticleId")
-                        .HasColumnType("int");
+                    b.Property<string>("AboutMe")
+                        .IsRequired()
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
                     b.Property<DateTime?>("BirthDay")
                         .IsRequired()
@@ -345,9 +347,11 @@ namespace PythonLearn.DAL.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("Id");
+                    b.Property<byte[]>("avatar")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
-                    b.HasIndex("ArticleId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
@@ -438,10 +442,6 @@ namespace PythonLearn.DAL.Migrations
 
             modelBuilder.Entity("PythonLearn.Domain.Entity.User", b =>
                 {
-                    b.HasOne("PythonLearn.Domain.Entity.Article", null)
-                        .WithMany("Users")
-                        .HasForeignKey("ArticleId");
-
                     b.HasOne("PythonLearn.Domain.Entity.Course", null)
                         .WithMany("Users")
                         .HasForeignKey("CourseId");
@@ -466,11 +466,6 @@ namespace PythonLearn.DAL.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("PythonLearn.Domain.Entity.Article", b =>
-                {
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("PythonLearn.Domain.Entity.ArticleComment", b =>

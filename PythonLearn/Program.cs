@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using PythonLearn.DAL;
 using PythonLearn.DAL.Repositories;
+using PythonLearn.Service.implementation;
+using PythonLearn.Service.interfaces;
 using University.DAL.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,7 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer(connectionString));
 
+//repositories
 builder.Services.AddScoped<IArticleCommentRepository, ArticleCommentRepository>();
 builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
@@ -22,6 +25,12 @@ builder.Services.AddScoped<ISolutionRepository, SolutionRepository>();
 builder.Services.AddScoped<ITitleRepository, TitleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
+//services
+builder.Services.AddScoped<IUserService, UserService>();
+
+
 
 var app = builder.Build();
 

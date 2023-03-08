@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonLearn.Domain", "Pytho
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{FF2B86AC-295A-42D6-9C94-6CB174725677}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonLearn.DAL", "PythonLearn.DAL\PythonLearn.DAL.csproj", "{DB01FAAF-3691-4B7D-8F7B-BB7713E94031}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonLearn.DAL", "PythonLearn.DAL\PythonLearn.DAL.csproj", "{DB01FAAF-3691-4B7D-8F7B-BB7713E94031}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{ADA7E254-4FC0-4CF9-9555-2B818C996C4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonLearn.Service", "PythonLearn.Service\PythonLearn.Service.csproj", "{8901045E-FEC0-4F63-98AB-012B18647104}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,10 @@ Global
 		{DB01FAAF-3691-4B7D-8F7B-BB7713E94031}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB01FAAF-3691-4B7D-8F7B-BB7713E94031}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB01FAAF-3691-4B7D-8F7B-BB7713E94031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8901045E-FEC0-4F63-98AB-012B18647104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8901045E-FEC0-4F63-98AB-012B18647104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8901045E-FEC0-4F63-98AB-012B18647104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8901045E-FEC0-4F63-98AB-012B18647104}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6BB8C206-58FC-4B11-B8CD-5F170C8ED058} = {552E6603-FC9C-4963-A895-6ECE1E3B7815}
 		{DB01FAAF-3691-4B7D-8F7B-BB7713E94031} = {FF2B86AC-295A-42D6-9C94-6CB174725677}
+		{8901045E-FEC0-4F63-98AB-012B18647104} = {ADA7E254-4FC0-4CF9-9555-2B818C996C4F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8438E2BA-EC15-468F-A04B-92265678A92B}

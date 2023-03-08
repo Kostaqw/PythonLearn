@@ -16,7 +16,7 @@ namespace PythonLearn.Domain.Entity
         [Required]
         public string? ArticleText { get; set; }
 
-        [ValidateNever]
-        public List<User> Users { get; set; }
+        /*[ValidateNever]
+        public List<User> Users { get; set; }*/
     }
 }
