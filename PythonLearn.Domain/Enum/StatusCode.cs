@@ -7,6 +7,7 @@ namespace PythonLearn.Domain.Enum
         //users Codes 0-20
         [Display(Name = "Пользователь не найден")]
         UserNotFound = 0,
+        UserAlreaydyExists = 1,
 
         //common codes
         [Display(Name = "Успех")]

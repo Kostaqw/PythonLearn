@@ -1,4 +1,6 @@
-﻿using PythonLearn.Domain.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
+using PythonLearn.Domain.Entity;
 using PythonLearn.Domain.Enum;
 using PythonLearn.Domain.Interface;
 using PythonLearn.Domain.Response;
@@ -8,19 +10,31 @@ using University.DAL.Interfaces;
 
 namespace PythonLearn.Service.implementation
 {
+    /// <summary>
+    /// Сервис управления пользователями
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly IUnitOfWork _context;
 
+        /// <summary>
+        /// Конструктор для dependence injactive 
+        /// </summary>
+        /// <param name="context">Объект реализующий интерфейс IUnitOfWork</param>
         public UserService(IUnitOfWork context)
         {
             _context = context;
         }
 
-
         //CREATE
 
-        public async Task<IBaseResponse<bool>> CreateUser(UserViewModel user)
+        /// <summary>
+        /// Создание пользователя
+        /// </summary>
+        /// <param name="user">Вью модель пользователя</param>
+        /// <param name="imageData">Аватарка пользоватя</param>
+        /// <returns>Асинхронный ответ в виде bool значения</returns>
+        public async Task<IBaseResponse<bool>> CreateUser(UserViewModel user, byte[] imageData)
         { 
             var response = new BaseResponse<bool>();
             try
@@ -28,10 +42,10 @@ namespace PythonLearn.Service.implementation
                 var newUser = new User()
                 {
                     AboutMe = user.AboutMe,
-                    avatar = user.avatar,
                     BirthDay = user.BirthDay,
                     Email = user.Email,
                     Login = user.Login,
+                    avatar = imageData,
                     Name = user.Name,
                     Password = user.Password,
                     SecondName = user.SecondName
@@ -65,7 +79,7 @@ namespace PythonLearn.Service.implementation
             var baseResponse = new BaseResponse<IEnumerable<User>>();
             try
             {
-                var users = await _context.UserRepositories.GetAllAsync();
+                var users = await _context.UserRepositories.GetAllAsync().ToListAsync();
                 if (users.Count == 0)
                 {
                     baseResponse.StatusCode = StatusCode.Warn;
@@ -137,7 +151,7 @@ namespace PythonLearn.Service.implementation
             var response = new BaseResponse<IEnumerable<User>>();
             try
             {
-                var users = await _context.UserRepositories.GetByNameAsync(name);
+                var users = await _context.UserRepositories.GetAllAsync().Where(x=>x.Name == name).ToListAsync();
                 if (users.Count==0)
                 {
                     response.StatusCode = StatusCode.NotFound;
@@ -172,7 +186,7 @@ namespace PythonLearn.Service.implementation
             var response = new BaseResponse<IEnumerable<User>>();
             try
             {
-                var users = await _context.UserRepositories.GetByNameAsync(secondName);
+                var users = await _context.UserRepositories.GetAllAsync().Where(x=>x.SecondName==secondName).ToListAsync();
                 if (users.Count == 0)
                 {
                     response.StatusCode = StatusCode.NotFound;
@@ -225,7 +239,6 @@ namespace PythonLearn.Service.implementation
                     user.AboutMe = model.AboutMe;
                     user.SecondName= model.SecondName;
                     user.BirthDay= model.BirthDay;
-                    user.avatar = model.avatar;
                     user.Login= model.Login;
                     await _context.UserRepositories.UpdateAsync(user);
 
@@ -245,6 +258,7 @@ namespace PythonLearn.Service.implementation
             }
         }
         //DELETE
+
         /// <summary>
         /// Удалить пользователя по id
         /// </summary>
@@ -283,7 +297,5 @@ namespace PythonLearn.Service.implementation
                 };
             }
         }
-
-
     }
 }

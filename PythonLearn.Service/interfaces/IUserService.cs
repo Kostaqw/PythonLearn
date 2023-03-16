@@ -8,7 +8,7 @@ namespace PythonLearn.Service.interfaces
     {
         Task<IBaseResponse<IEnumerable<User>>> GetUsersAsync();
 
-        Task<IBaseResponse<bool>> CreateUser(UserViewModel user);
+        Task<IBaseResponse<bool>> CreateUser(UserViewModel user, byte[] imageData);
 
         Task<IBaseResponse<User>> GetUserAsync(int id);
         Task<IBaseResponse<IEnumerable<User>>> GetUserByNameAsync(string name);

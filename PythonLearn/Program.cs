@@ -20,7 +20,6 @@ builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IElementRepository, ElementRepository>();
 builder.Services.AddScoped<ILessonCommentRepository, LessonCommentRepository>();
 builder.Services.AddScoped<ILessonRepository, LessonRepository>();
-builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<ISolutionRepository, SolutionRepository>();
 builder.Services.AddScoped<ITitleRepository, TitleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -29,7 +28,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //services
 builder.Services.AddScoped<IUserService, UserService>();
-
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 
 var app = builder.Build();
@@ -49,8 +48,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+//Авторизация
+app.UseAuthentication();
 app.UseAuthorization();
 
+//Маршрутизация
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

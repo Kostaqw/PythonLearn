@@ -63,9 +63,31 @@ namespace PythonLearn.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Element>?> GetAllAsync()=>await _context.Elements.ToListAsync();
+        public async Task<Element> GetAsync(int id)
+        {
+            var result = await _context.Elements.FirstOrDefaultAsync(x => x.Id == id);
+            if (result == null)
+            {
+                throw new ArgumentNullException("[ElementRepository] GetAsync(int id): the element isn't found");
+            }
+            else
+            {
+                return result;
+            }
+        }
 
-        public async Task<Element?> GetAsync(int id)=> await _context.Elements.FirstOrDefaultAsync(x => x.Id == id);
+        public IQueryable<Element> GetAllAsync()
+        {
+            var result = _context.Elements;
+            if (result == null)
+            {
+                throw new ArgumentNullException("[ElementRepository] GetAllAsync(): the elements arn't found");
+            }
+            else
+            {
+                return result;
+            }
+        }
 
     }
 }

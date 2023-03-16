@@ -50,9 +50,31 @@ namespace PythonLearn.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<LessonComment>?> GetAllAsync() => await _context.LessonComments.ToListAsync();
+        public async Task<LessonComment> GetAsync(int id)
+        {
+            var result = await _context.LessonComments.FirstOrDefaultAsync(x => x.Id == id);
+            if (result == null)
+            {
+                throw new ArgumentNullException("[LessonCommentRepository] GetAsync(int id): the lesson comment isn't found");
+            }
+            else
+            {
+                return result;
+            }
+        }
 
-        public async Task<LessonComment?> GetAsync(int id) => await _context.LessonComments.FirstOrDefaultAsync(x => x.Id == id);
+        public IQueryable<LessonComment> GetAllAsync()
+        {
+            var result = _context.LessonComments;
+            if (result == null)
+            {
+                throw new ArgumentNullException("[LessonCommentRepository] GetAllAsync(): the lesson comments arn't found");
+            }
+            else
+            {
+                return result;
+            }
+        }
 
 
     }

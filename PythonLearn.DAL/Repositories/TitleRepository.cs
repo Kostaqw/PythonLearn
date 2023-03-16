@@ -46,8 +46,30 @@ namespace PythonLearn.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Title>?> GetAllAsync() => await _context.Titles.ToListAsync();
+        public async Task<Title> GetAsync(int id)
+        {
+            var result = await _context.Titles.FirstOrDefaultAsync(x => x.Id == id);
+            if (result == null)
+            {
+                throw new ArgumentNullException("[TitleRepository] GetAsync(int id): the title isn't found");
+            }
+            else
+            {
+                return result;
+            }
+        }
 
-        public async Task<Title?> GetAsync(int id) => await _context.Titles.FirstOrDefaultAsync(x => x.Id == id);
+        public IQueryable<Title> GetAllAsync()
+        {
+            var result = _context.Titles;
+            if (result == null)
+            {
+                throw new ArgumentNullException("[TitleRepository] GetAllAsync(): the titles arn't found");
+            }
+            else
+            {
+                return result;
+            }
+        }
     }
 }

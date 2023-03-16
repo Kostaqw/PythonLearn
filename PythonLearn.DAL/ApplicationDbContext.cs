@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PythonLearn.DAL.ModelConfiguration;
 using PythonLearn.Domain.Entity;
+using System.Security.Cryptography.X509Certificates;
 
 namespace PythonLearn.DAL
 {
@@ -25,11 +27,15 @@ namespace PythonLearn.DAL
         public DbSet<Element> Elements { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<LessonComment> LessonComments { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<Solution> Solutions { get; set; }
         public DbSet<Title> Titles{ get; set; }
         public DbSet<User> Users { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+        }
 
     }
 }

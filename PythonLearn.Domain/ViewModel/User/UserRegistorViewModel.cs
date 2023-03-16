@@ -1,45 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using PythonLearn.Domain.Enum;
+﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
-namespace PythonLearn.Domain.Entity
+namespace PythonLearn.Domain.ViewModel.User
 {
-    public class User
+    public class UserRegistorViewModel
     {
-        public int Id { get; set; }
-
         [Required]
-        [MaxLength(30)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(30)]
         public string SecondName { get; set; }
-
+        
         [Required]
         public DateTime? BirthDay { get; set; }
 
         [Required]
-        [MaxLength(30)]
         public string Login { get; set; }
 
         [Required]
-        [MaxLength(30)]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(300)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [MaxLength(400)]
+        [Required]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        public string ConfirmPassword { get; set; }
         public string AboutMe { get; set; }
 
-        public byte[] avatar { get; set; }
-
         [Required]
-        public Roles Role { get; set; }
-
-        [ValidateNever]
-        public List<Solution> Solutions { get; set; }
+        public IFormFile avatar { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using PythonLearn.Service.implementation;
 using PythonLearn.Service.interfaces;
 using PythonLearn.Domain.ViewModel.User;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Cryptography.Xml;
 
 namespace PythonLearn.Controllers
 {
@@ -51,7 +52,12 @@ namespace PythonLearn.Controllers
             {
                 if (model.Id == 0)
                 {
-                    await _service.CreateUser(model);
+                    byte[] imageData;
+                    using (var binaryReader = new BinaryReader(model.avatar.OpenReadStream()))
+                    { 
+                        imageData= binaryReader.ReadBytes((int)model.avatar.Length);
+                    }
+                        await _service.CreateUser(model, imageData);
                 }
                 else
                 {

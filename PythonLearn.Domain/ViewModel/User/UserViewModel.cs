@@ -1,4 +1,6 @@
-﻿namespace PythonLearn.Domain.ViewModel.User
+﻿using Microsoft.AspNetCore.Http;
+
+namespace PythonLearn.Domain.ViewModel.User
 {
     public class UserViewModel
     {
@@ -17,6 +19,6 @@
 
         public string AboutMe { get; set; }
 
-        public byte[] avatar { get; set; }
+        public IFormFile avatar { get; set; }
     }
 }

@@ -68,12 +68,31 @@ namespace PythonLearn.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<User>?> GetAllAsync()=>await _context.Users.ToListAsync();
+        public async Task<User> GetAsync(int id)
+        {
+            var result = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            if (result == null)
+            {
+                throw new ArgumentNullException("[UserRepository] GetAsync(int id): the user isn't found");
+            }
+            else
+            {
+                return result;
+            }
+        }
 
-        public async Task<User?> GetAsync(int id)=> await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-
-        public async Task<List<User>?> GetByNameAsync(string name) => await _context.Users.Where(x => x.Name == name).ToListAsync();
-        public async Task<List<User>?> GetBySecondNameAsync(string secondName) => await _context.Users.Where(x => x.SecondName== secondName).ToListAsync();
+        public IQueryable<User> GetAllAsync()
+        {
+            var result = _context.Users;
+            if (result == null)
+            {
+                throw new ArgumentNullException("[UserRepository] GetAllAsync(): the users arn't found");
+            }
+            else
+            {
+                return result;
+            }
+        }
 
     }
 }
