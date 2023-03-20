@@ -91,6 +91,12 @@ namespace PythonLearn.Service.implementation
                     };
                 }
 
+                byte[] avatarFromFile = null;
+                using(var binaryReader = new BinaryReader(model.avatar.OpenReadStream())) 
+                {
+                    avatarFromFile = binaryReader.ReadBytes((int)model.avatar.Length);
+                }
+
                 user = new Domain.Entity.User()
                 {
                     Name = model.Name,
@@ -100,7 +106,8 @@ namespace PythonLearn.Service.implementation
                     Login = model.Login,
                     Password = CreateHash.CreateMD5Hash(model.Password),
                     Role = Domain.Enum.Roles.User,
-                    SecondName = model.SecondName
+                    SecondName = model.SecondName,
+                    avatar = avatarFromFile,
                 };
 
                 await _context.UserRepositories.CreateAsync(user);

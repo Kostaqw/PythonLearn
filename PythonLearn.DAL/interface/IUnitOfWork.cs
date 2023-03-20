@@ -10,7 +10,6 @@ namespace University.DAL.Interfaces
         public ElementRepository ElementRepositories { get; }
         public LessonCommentRepository LessonCommentsRepositories { get; }
         public LessonRepository LessonRepositories { get; }
-        public RoleRepository RoleRepositories { get; }
         public SolutionRepository SolutionRepositories { get; }
         public TitleRepository TitleRepositories { get; }
         public UserRepository UserRepositories { get; }

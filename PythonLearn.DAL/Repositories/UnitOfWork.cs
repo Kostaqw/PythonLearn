@@ -11,7 +11,6 @@ namespace PythonLearn.DAL.Repositories
         private ElementRepository elementRepository;
         private LessonCommentRepository lessonCommentsRepositories;
         private LessonRepository lessonRepository;
-        private RoleRepository roleRepository;
         private UserRepository userRepository;
         private SolutionRepository solutionRepository;
         private TitleRepository titleRepository;
@@ -89,17 +88,6 @@ namespace PythonLearn.DAL.Repositories
             }
         }
 
-        public RoleRepository RoleRepositories
-        {
-            get
-            {
-                if (roleRepository == null)
-                {
-                    roleRepository = new RoleRepository(context);
-                }
-                return roleRepository;
-            }
-        }
 
         public SolutionRepository SolutionRepositories
         {

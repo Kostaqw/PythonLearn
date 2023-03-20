@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using PythonLearn.DAL;
 using PythonLearn.DAL.Repositories;
@@ -12,6 +13,11 @@ builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer(connectionString));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/login");
+    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/login");
+});
 
 //repositories
 builder.Services.AddScoped<IArticleCommentRepository, ArticleCommentRepository>();
