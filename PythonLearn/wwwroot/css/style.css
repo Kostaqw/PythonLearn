@@ -41,7 +41,7 @@ body{
     padding: 180px 0;
     background-size: cover;
     background-position: 0 100;
-    background-image: url(../img/header.png);
+    background-image: url(../images/header.png);
 }
 
 .header__title{
@@ -222,11 +222,11 @@ div[filter]:hover .text {
     margin-bottom: 20px;
 }
 
-.price__head{
+.price__head {
     color: white;
     padding-top: 40px;
     padding-bottom: 65px;
-    background-image: url(../img/priceHead.png);
+    background-image: url(~/images/priceHead.png);
     background-size: cover;
     background-repeat: no-repeat;
     max-height: 211px;
@@ -420,12 +420,12 @@ div[filter]:hover .text {
 }
 
 
-.footer{
+.footer {
     padding-top: 165px;
     padding-bottom: 125px;
     color: #fff;
-    background-image: url(../img/footer.png);
-    text-align: center;   
+    background-image: url(../images/footer.png);
+    text-align: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -765,6 +765,18 @@ div[filter]:hover .text {
     bottom: 0;
     right: 0;
     overflow: auto;
+}
+
+
+/*Messages*/
+.Message {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding: 180px 0;
+    background-size: cover;
+    background-position: 0 100;
+    background-color: #00897b;
 }
 
 @media screen and (max-width: 1024px) {

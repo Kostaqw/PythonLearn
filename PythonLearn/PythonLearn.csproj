@@ -31,4 +31,14 @@
     <ProjectReference Include="..\PythonLearn.Service\PythonLearn.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Account\Login.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\style.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

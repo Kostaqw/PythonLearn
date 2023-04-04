@@ -4,20 +4,22 @@ using Microsoft.AspNetCore.Mvc;
 using PythonLearn.Domain.ViewModel.User;
 using PythonLearn.Service.interfaces;
 using System.Security.Claims;
+using System.Linq;
 
 namespace PythonLearn.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IAccountService _service;
-
+        private readonly IUserService _userService;
         /// <summary>
         /// Конструктор для dependence injactive
         /// </summary>
         /// <param name="context">Контекст</param>
-        public AccountController(IAccountService service)
+        public AccountController(IAccountService service, IUserService userService)
         {
             _service = service;
+            _userService = userService;
         }
 
         /// <summary>
@@ -72,7 +74,18 @@ namespace PythonLearn.Controllers
                 {
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(response.Data));
 
-                    return RedirectToAction("Index", "Home");
+                    var userModel = _userService.GetUsersAsync().Result.Data.FirstOrDefault(x => x.Login == model.UserName);
+
+                    var userViewModel = new UserViewModel()
+                    {
+                        Login = userModel.Login,
+                        Email = userModel.Email,
+                        Id = userModel.Id,
+                        Name = userModel.Name,
+                        SecondName = userModel.SecondName
+                    };
+
+                    return RedirectToAction("Index", "Home", userViewModel);
                 }
                 ModelState.AddModelError("", response.Description);
             }
@@ -88,6 +101,22 @@ namespace PythonLearn.Controllers
         { 
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
+        }
+
+
+        /// <summary>
+        /// Отобразить окно входа на сайт
+        /// </summary>
+        /// <returns>Представление Login</returns>
+        [HttpGet]
+        public IActionResult Profile()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userViewModel = _userService.GetUsersAsync().Result.Data.FirstOrDefault(x => x.Login == User.Identity.Name);
+                return View(userViewModel);
+            }
+            return View();
         }
     }
 }
