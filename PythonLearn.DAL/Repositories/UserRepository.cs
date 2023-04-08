@@ -63,8 +63,10 @@ namespace PythonLearn.DAL.Repositories
             {
                 user.AboutMe = entity.AboutMe;
             }
-            user.avatar = entity.avatar;
-
+            if (entity.avatar != null)
+            {
+                user.avatar = entity.avatar;
+            }
             await _context.SaveChangesAsync();
         }
 

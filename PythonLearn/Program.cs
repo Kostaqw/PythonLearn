@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using PythonLearn.DAL;
 using PythonLearn.DAL.Repositories;
+using PythonLearn.Models.Mapper;
 using PythonLearn.Service.implementation;
 using PythonLearn.Service.interfaces;
 using University.DAL.Interfaces;
@@ -18,6 +19,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/login");
     options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/login");
 });
+builder.Services.AddAutoMapper(typeof(AppMappingProfile));
 
 //repositories
 builder.Services.AddScoped<IArticleCommentRepository, ArticleCommentRepository>();

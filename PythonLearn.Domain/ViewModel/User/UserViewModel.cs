@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PythonLearn.Domain.ViewModel.User
 {
@@ -11,14 +13,18 @@ namespace PythonLearn.Domain.ViewModel.User
 
         public DateTime? BirthDay { get; set; }
 
+        [ValidateNever]
         public string Login { get; set; }
 
+        [ValidateNever]
         public string Email { get; set; }
-
-        public string Password { get; set; }
 
         public string AboutMe { get; set; }
 
+
+        [ValidateNever]
         public IFormFile avatar { get; set; }
+        [ValidateNever]
+        public byte[] Image { get; set; }
     }
 }

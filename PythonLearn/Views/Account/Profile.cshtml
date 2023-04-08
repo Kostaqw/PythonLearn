@@ -82,17 +82,9 @@
                     </div>
                     <div class="col-xl-2 align-self-center">
                         <input asp-for="@Model.avatar" type="file">
+                            <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Image))" />
                     </div>
                 </div>
-                <div class="row justify-content-left">
-                    <div class="col-xl-2 offset-xl-2 align-self-start">
-                        <p class="">Пароль</p>
-                    </div>
-                    <div class="col-xl-4 align-self-center">
-                        <input autocomplete="new-password" asp-for="Password" placeholder="Пароль" type="password">
-                    </div>
-                </div>
-
                 <div class="row justify-content-around">
                     <div class="col-xl-3">
                         <button type="submit" class="register_button" value="СОХРАНИТЬ">РЕГИСТРАЦИЯ</button>

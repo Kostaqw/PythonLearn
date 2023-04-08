@@ -47,7 +47,6 @@ namespace PythonLearn.Service.implementation
                     Login = user.Login,
                     avatar = imageData,
                     Name = user.Name,
-                    Password = user.Password,
                     SecondName = user.SecondName
                 };
                 await _context.UserRepositories.CreateAsync(newUser);
@@ -235,7 +234,6 @@ namespace PythonLearn.Service.implementation
                 { 
                     user.Name= model.Name;
                     user.Email= model.Email;
-                    user.Password= model.Password;
                     user.AboutMe = model.AboutMe;
                     user.SecondName= model.SecondName;
                     user.BirthDay= model.BirthDay;

@@ -5,6 +5,11 @@ using PythonLearn.Domain.ViewModel.User;
 using PythonLearn.Service.interfaces;
 using System.Security.Claims;
 using System.Linq;
+using AutoMapper;
+using PythonLearn.DAL.other;
+using Microsoft.AspNetCore.Http;
+using System.Collections;
+
 
 namespace PythonLearn.Controllers
 {
@@ -12,14 +17,17 @@ namespace PythonLearn.Controllers
     {
         private readonly IAccountService _service;
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
+
         /// <summary>
         /// Конструктор для dependence injactive
         /// </summary>
         /// <param name="context">Контекст</param>
-        public AccountController(IAccountService service, IUserService userService)
+        public AccountController(IAccountService service, IUserService userService, IMapper mapper)
         {
             _service = service;
             _userService = userService;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -113,10 +121,44 @@ namespace PythonLearn.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var userViewModel = _userService.GetUsersAsync().Result.Data.FirstOrDefault(x => x.Login == User.Identity.Name);
+                var user = _userService.GetUsersAsync().Result.Data.FirstOrDefault(x => x.Login == User.Identity.Name);
+
+                var userViewModel = _mapper.Map<UserViewModel>(user);
                 return View(userViewModel);
             }
             return View();
+        }
+
+
+        /// <summary>
+        /// Изменение профиля пользователя
+        /// </summary>
+        /// <param name="model">Вью модель пользователя</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Profile(UserViewModel model)
+        {
+            var user = _userService.GetUsersAsync().Result.Data.FirstOrDefault(x => x.Login == User.Identity.Name);
+            if (user != null)
+            {
+                model.Email = user.Email;
+                model.Login= user.Login;
+                model.Image = user.avatar;
+                model.Id = user.Id;
+                if (ModelState.IsValid)
+                {
+                    var response = await _service.EditAccount(model);
+                    if (response.StatusCode == Domain.Enum.StatusCode.OK)
+                    {
+                        return RedirectToAction("Index", "Home", model.Login);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", response.Description);
+                    }
+                }
+            }
+            return View(model);
         }
     }
 }

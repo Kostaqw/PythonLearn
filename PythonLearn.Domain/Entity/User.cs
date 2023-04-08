@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using PythonLearn.Domain.Enum;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PythonLearn.Domain.Entity
 {
@@ -34,6 +35,7 @@ namespace PythonLearn.Domain.Entity
         [MaxLength(400)]
         public string AboutMe { get; set; }
 
+  
         public byte[] avatar { get; set; }
 
         [Required]

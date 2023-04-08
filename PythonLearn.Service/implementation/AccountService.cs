@@ -131,6 +131,70 @@ namespace PythonLearn.Service.implementation
             }
         }
 
+        /// <summary>
+        /// редактирование аккаунта
+        /// </summary>
+        /// <param name="model">Вью модель</param>
+        /// <returns>Возвращает true в случае успеха</returns>
+        public async Task<BaseResponse<bool>> EditAccount(UserViewModel model)
+        {
+            try
+            {
+                var user = await _context.UserRepositories.GetAllAsync().FirstOrDefaultAsync(x => x.Login == model.Login);
+                if (user == null)
+                {
+                    return new BaseResponse<bool>()
+                    {
+                        StatusCode = Domain.Enum.StatusCode.UserNotFound,
+                        Description = "Пользователь с таким логином уже существует",
+                        Data = false
+                    };
+                }
+
+                user = new Domain.Entity.User()
+                {
+                    Id= model.Id,
+                    Name = model.Name,
+                    Email = model.Email,
+                    AboutMe = model.AboutMe,
+                    BirthDay = model.BirthDay,
+                    Login = model.Login,
+                    SecondName = model.SecondName,
+                };
+
+                
+                if (model.avatar != null)
+                {
+                    byte[] avatarFromFile = null;
+                    using (var binaryReader = new BinaryReader(model.avatar.OpenReadStream()))
+                    {
+                        avatarFromFile = binaryReader.ReadBytes((int)model.avatar.Length);
+                    }
+                    user.avatar= avatarFromFile;
+                }
+
+
+
+                await _context.UserRepositories.UpdateAsync(user);
+
+
+                return new BaseResponse<bool>()
+                {
+                    Data = true,
+                    Description = "Пользователь изменен",
+                    StatusCode = Domain.Enum.StatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<bool>()
+                {
+                    Description = $"[AccountService] EditAccount(UserRegistorViewModel model): {ex.Message}",
+                    StatusCode = Domain.Enum.StatusCode.InternalServerError,
+                };
+            }
+        }
+
 
         /// <summary>
         /// Метод аутентификации пользователя
