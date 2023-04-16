@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PythonLearn.Domain.Entity
 {
     public class Article
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -16,7 +18,13 @@ namespace PythonLearn.Domain.Entity
         [Required]
         public string? ArticleText { get; set; }
 
-        /*[ValidateNever]
-        public List<User> Users { get; set; }*/
+        [Required]
+        [ForeignKey("TitleId")]
+        public virtual Title Title { get; set; }
+        
+        [Required]
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
+
     }
 }

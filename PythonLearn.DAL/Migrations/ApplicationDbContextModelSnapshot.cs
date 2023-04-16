@@ -92,7 +92,10 @@ namespace PythonLearn.DAL.Migrations
 
                     b.HasIndex("ArticleCommentId");
 
-                    b.HasIndex("TitleId");
+                    b.HasIndex("TitleId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Articles");
                 });
@@ -258,6 +261,9 @@ namespace PythonLearn.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -408,11 +414,21 @@ namespace PythonLearn.DAL.Migrations
                         .WithMany("Articles")
                         .HasForeignKey("ArticleCommentId");
 
-                    b.HasOne("PythonLearn.Domain.Entity.Title", null)
-                        .WithMany("Articles")
-                        .HasForeignKey("TitleId")
+                    b.HasOne("PythonLearn.Domain.Entity.Title", "Title")
+                        .WithOne("Article")
+                        .HasForeignKey("PythonLearn.Domain.Entity.Article", "TitleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PythonLearn.Domain.Entity.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Title");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("PythonLearn.Domain.Entity.Lesson", b =>
@@ -449,7 +465,8 @@ namespace PythonLearn.DAL.Migrations
 
             modelBuilder.Entity("PythonLearn.Domain.Entity.Title", b =>
                 {
-                    b.Navigation("Articles");
+                    b.Navigation("Article")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

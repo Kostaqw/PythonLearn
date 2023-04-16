@@ -6,6 +6,8 @@ ul, li {
     margin: 0;
 }
 
+.hidden{display:none;}
+
 .menu-bar{
     background: #ffffff;
     padding: 20px 0;

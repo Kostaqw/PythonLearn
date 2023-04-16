@@ -9,7 +9,7 @@ using AutoMapper;
 using PythonLearn.DAL.other;
 using Microsoft.AspNetCore.Http;
 using System.Collections;
-
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace PythonLearn.Controllers
 {

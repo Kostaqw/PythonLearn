@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.ComponentModel.DataAnnotations;
-
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PythonLearn.Domain.Entity
 {
     public class Title
     {
         public int Id { get; set; }
+        public int ArticleId { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -16,7 +16,8 @@ namespace PythonLearn.Domain.Entity
         [StringLength(300)]
         public string ShortDescription { get; set; }
 
-        [ValidateNever]
-        public List<Article> Articles { get; set; }
+        [Required]
+        public virtual Article Article { get; set; }
+
     }
 }
