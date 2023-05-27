@@ -8,6 +8,7 @@ namespace PythonLearn.Domain.Entity
     public class User
     {
         public int Id { get; set; }
+ 
 
         [Required]
         [MaxLength(30)]
@@ -43,5 +44,6 @@ namespace PythonLearn.Domain.Entity
 
         [ValidateNever]
         public List<Solution> Solutions { get; set; }
+
     }
 }

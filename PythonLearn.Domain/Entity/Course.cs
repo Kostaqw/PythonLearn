@@ -6,18 +6,12 @@ namespace PythonLearn.Domain.Entity
     public class Course
     {
         public int Id { get; set; }
-
-        [Required]
-        public int userId{ get; set; }
-
-        [Required]
-        public int LessonId { get; set; }
-
-        /*
-        [ValidateNever]
-        public List<User> Users { get; set; }*/
+        
+        public string Name { get; set; }
+        public string Description { get; set; }
 
         [ValidateNever]
         public List<Lesson> Lessons { get; set; }
+
     }
 }

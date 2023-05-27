@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 namespace PythonLearn.Domain.ViewModel.User
 {
-    public class UserRegistorViewModel
+    public class UserRegistorViewModel : IdentityUser
     {
         [Required]
         public string Name { get; set; }
@@ -16,6 +17,7 @@ namespace PythonLearn.Domain.ViewModel.User
         public DateTime? BirthDay { get; set; }
 
         [Required]
+        [PersonalData]
         public string Login { get; set; }
 
         [Required]

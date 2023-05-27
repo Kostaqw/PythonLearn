@@ -9,11 +9,14 @@ namespace PythonLearn.DAL.Repositories
         private ArticleRepository articleRepository;
         private CourseRepository courseRepository;
         private ElementRepository elementRepository;
+        private LectureRepository lectureRepository;
         private LessonCommentRepository lessonCommentsRepositories;
         private LessonRepository lessonRepository;
         private UserRepository userRepository;
         private SolutionRepository solutionRepository;
         private TitleRepository titleRepository;
+        private QuestionRepository questionRepository;
+        
         public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
@@ -122,6 +125,30 @@ namespace PythonLearn.DAL.Repositories
                     userRepository = new UserRepository(context);
                 }
                 return userRepository;
+            }
+        }
+
+        public LectureRepository LectureRepositories
+        {
+            get
+            {
+                if (lectureRepository == null)
+                {
+                    lectureRepository = new LectureRepository(context);
+                }
+                return lectureRepository;
+            }
+        }
+
+        public QuestionRepository QuestionRepositories
+        {
+            get
+            {
+                if (questionRepository == null)
+                {
+                    questionRepository = new QuestionRepository(context);
+                }
+                return questionRepository;
             }
         }
 

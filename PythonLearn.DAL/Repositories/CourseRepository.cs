@@ -39,14 +39,11 @@ namespace PythonLearn.DAL.Repositories
                 throw new ArgumentNullException("[CourseRepository] UpdateAsync(int id): the course isn't found");
             }
 
-            course.LessonId = entity.LessonId;
-            course.userId = entity.userId;
-
             await _context.SaveChangesAsync();
         }
         public async Task<Course?> GetAsync(int id)
         { 
-            var result = await _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
+            var result = await _context.Courses.Include(c=>c.Lessons).FirstOrDefaultAsync(x => x.Id == id);
             if (result == null)
             {
                 throw new ArgumentNullException("[CourseRepository] GetAsync(int id): the course isn't found");
@@ -59,7 +56,7 @@ namespace PythonLearn.DAL.Repositories
 
         public IQueryable<Course> GetAllAsync()
         {
-            var result = _context.Courses;
+            var result = _context.Courses.Include(c=>c.Lessons);
             if (result == null)
             {
                 throw new ArgumentNullException("[CourseRepository] GetAllAsync(): the courses arn't found");

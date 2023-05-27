@@ -3,6 +3,7 @@ using PythonLearn.Domain.Entity;
 using PythonLearn.Domain.Enum;
 using PythonLearn.Domain.Interface;
 using PythonLearn.Domain.Response;
+using PythonLearn.Domain.ViewModel.Article;
 using PythonLearn.Service.interfaces;
 using University.DAL.Interfaces;
 
@@ -91,6 +92,45 @@ namespace PythonLearn.Service.implementation
             }
         }
 
+        public async Task<IBaseResponse<bool>> CreateArticleWithTitle(CompleteArticle article)
+        {
+            var response = new BaseResponse<bool>();
+            try
+            {
+                var newTitle = new Title()
+                {
+                    Name = article.Name,
+                    ShortDescription = article.ShortDescription
+                };
+
+                await _context.TitleRepositories.CreateAsync(newTitle);
+
+                article.TitleId = _context.TitleRepositories.GetAllAsync().FirstOrDefault(x => x.Name == article.Name).Id;
+                var newArticle = new Article()
+                {
+                    TitleId = article.TitleId,
+                    ArticleText = article.ArticleText,
+                    UserId = article.UserId,
+                    CreatedDate = DateTime.Now,
+                };
+                await _context.ArticleRepositories.CreateAsync(newArticle);
+                
+                response.Description = $"Статья успешно создана";
+                response.StatusCode = StatusCode.OK;
+                response.Data = true;
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<bool>()
+                {
+                    StatusCode = StatusCode.BadRequest,
+                    Description = $"[ArticleService] CreateArticleWithTitle(CompleteArticle article): {ex.Message}"
+                };
+            }
+        }
+
         //READ
         /// <summary>
         /// Возвращает статью по id
@@ -123,6 +163,56 @@ namespace PythonLearn.Service.implementation
                 {
                     StatusCode = StatusCode.BadRequest,
                     Description = $"[ArticleService] GetArticleAsync(int id): {ex.Message}"
+                };
+            }
+        }
+
+        /// <summary>
+        /// Получить полную статью с заголовком и текстом статьи
+        /// </summary>
+        /// <param name="id"> Id статьи </param>
+        /// <returns></returns>
+        public async Task<IBaseResponse<CompleteArticle>> GetCompleteArticle(int id)
+        {
+            var response = new BaseResponse<CompleteArticle>();
+            try
+            {
+                var article = await _context.ArticleRepositories.GetAsync(id);
+                if (article == null)
+                {
+                    response.StatusCode = StatusCode.NotFound;
+                    response.Description = $"Статья с id {id} не найден в БД";
+                    return response;
+                }
+                else
+                {
+                    var title = await _context.TitleRepositories.GetAsync(article.TitleId);
+
+                    var completeArticle = new CompleteArticle()
+                    {
+                        TitleId = title.Id,
+                        ArticleId = article.Id,
+                        Name = title.Name,
+                        ShortDescription = title.ShortDescription,
+                        ArticleText = article.ArticleText,
+                        CreatedDate = article.CreatedDate,
+                        UserId = article.UserId,
+                        user = article.User
+                    };
+                    
+                    response.StatusCode = StatusCode.OK;
+                    response.Description = $"Статья {article.Title.Name} с id {id} найдена";
+
+                    response.Data = completeArticle;
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<CompleteArticle>()
+                {
+                    StatusCode = StatusCode.BadRequest,
+                    Description = $"[ArticleService] GetCompleteArticle(int id): {ex.Message}"
                 };
             }
         }
@@ -409,5 +499,7 @@ namespace PythonLearn.Service.implementation
                 };
             }
         }
+
+
     }
 }

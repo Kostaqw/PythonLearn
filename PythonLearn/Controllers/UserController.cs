@@ -22,6 +22,7 @@ namespace PythonLearn.Controllers
             _service = service;
         }
 
+        [HttpGet]
         public IActionResult Register()
         {
             return View();

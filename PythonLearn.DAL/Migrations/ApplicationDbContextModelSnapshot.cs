@@ -82,6 +82,9 @@ namespace PythonLearn.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("TitleId")
                         .HasColumnType("int");
 

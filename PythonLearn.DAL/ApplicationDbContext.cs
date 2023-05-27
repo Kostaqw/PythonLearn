@@ -25,10 +25,14 @@ namespace PythonLearn.DAL
         public DbSet<ArticleComment> ArticleComments { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Element> Elements { get; set; }
+        public DbSet<Lecture> Lectures { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<LessonComment> LessonComments { get; set; }
+        public DbSet<Practice> Practices { get; set; }
         public DbSet<Solution> Solutions { get; set; }
         public DbSet<Title> Titles{ get; set; }
+        public DbSet<Test> Tests { get; set; }
+        public DbSet<Question> Questions { get; set; }
         public DbSet<User> Users { get; set; }
 
 

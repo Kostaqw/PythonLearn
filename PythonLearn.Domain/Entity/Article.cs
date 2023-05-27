@@ -14,7 +14,10 @@ namespace PythonLearn.Domain.Entity
         
         [Required]
         public int TitleId { get; set; }
-        
+
+        [Required]
+        public DateTime CreatedDate { get; set; }
+
         [Required]
         public string? ArticleText { get; set; }
 

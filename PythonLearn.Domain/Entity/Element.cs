@@ -8,10 +8,6 @@ namespace PythonLearn.Domain.Entity
     {
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(60)]
-        public string Name { get; set; }
-
         public int LessonId { get; set; }
 
         public ElementType Type {get; set;}

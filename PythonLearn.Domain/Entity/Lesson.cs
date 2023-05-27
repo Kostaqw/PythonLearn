@@ -6,6 +6,7 @@ namespace PythonLearn.Domain.Entity
     public class Lesson
     {
         public int Id { get; set; }
+ 
 
         [Required]
         [MaxLength(60)]
@@ -18,5 +19,7 @@ namespace PythonLearn.Domain.Entity
         public List<LessonComment> LessonComments { get; set; }
 
         public List<Solution> Solutions { get; set; }
+
+
     }
 }

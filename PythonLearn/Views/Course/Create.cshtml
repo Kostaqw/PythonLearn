@@ -1,0 +1,204 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="~/js/ckeditor5/ckeditor.js"></script>
+    <script src="https://kit.fontawesome.com/c2c8ebeca3.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="js/slick-1.8.1/slick/slick.css" />
+    <title>Обучение python</title>
+</head>
+
+
+
+<div class="container mt-4">
+    <h1>Система создания тестирования</h1>
+
+    <button id="addSingleChoiceQuestion" class="btn btn-primary">Добавить вопрос с одним вариантом ответа</button>
+    <button id="addMultipleChoiceQuestion" class="btn btn-primary">Добавить вопрос с несколькими вариантами ответа</button>
+    <button id="addTextQuestion" class="btn btn-primary">Добавить вопрос с текстовым ответом</button>
+
+    <div class="form-group mt-4">
+        <label for="lessonSelect">Выберите урок:</label>
+        <select class="form-control" id="lessonSelect">
+            <option value="Урок 1">Урок 1</option>
+            <option value="Урок 2">Урок 2</option>
+            <option value="Урок 3">Урок 3</option>
+        </select>
+    </div>
+
+    <div id="questionsContainer" class="mt-4"></div>
+
+    <button id="saveTest" class="btn btn-success mt-4">Сохранить тест</button>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+
+<script src="js/jquery-3.6.3.js"></script>
+<script type="text/javascript" src="js/slick-1.8.1/slick/slick.min.js"></script>
+<script src="js/main.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var questionCounter = 0;
+
+        $('#addSingleChoiceQuestion').click(function () {
+            questionCounter++;
+            var questionId = 'question' + questionCounter;
+
+            var questionHtml = '<div id="' + questionId + '" class="card mt-4">' +
+                '<div class="card-body">' +
+                '<input type="text" class="form-control questionInput" placeholder="Введите вопрос">' +
+                '<button class="btn btn-primary mt-2 addOption">Добавить вариант ответа</button>' +
+                '<button class="btn btn-danger mt-2 removeQuestion">Удалить вопрос</button>' +
+                '<div class="optionsContainer mt-2"></div>' +
+                '</div>' +
+                '</div>';
+
+            $('#questionsContainer').append(questionHtml);
+
+            $('#' + questionId).on('click', '.addOption', function () {
+                var optionHtml = '<div class="input-group">' +
+                    '<div class="input-group-text">' +
+                    '<input type="radio" name="' + questionId + '" class="optionRadio">' +
+                    '</div>' +
+                    '<input type="text" class="form-control optionInput" placeholder="Введите вариант ответа">' +
+                    '<button class="btn btn-danger removeOption">Удалить вариант ответа</button>' +
+                    '</div>';
+
+                $(this).siblings('.optionsContainer').append(optionHtml);
+            });
+
+            $('#' + questionId).on('click', '.removeOption', function () {
+                $(this).parent().remove();
+            });
+
+            $('#' + questionId).on('click', '.removeQuestion', function () {
+                $(this).parent().parent().remove();
+            });
+        });
+
+        $('#addMultipleChoiceQuestion').click(function () {
+            questionCounter++;
+            var questionId = 'question' + questionCounter;
+
+            var questionHtml = '<div id="' + questionId + '" class="card mt-4">' +
+                '<div class="card-body">' +
+                '<input type="text" class="form-control questionInput" placeholder="Введите вопрос">' +
+                '<button class="btn btn-primary mt-2 addOption">Добавить вариант ответа</button>' +
+                '<button class="btn btn-danger mt-2 removeQuestion">Удалить вопрос</button>' +
+                '<div class="optionsContainer mt-2"></div>' +
+                '</div>' +
+                '</div>';
+
+            $('#questionsContainer').append(questionHtml);
+
+            $('#' + questionId).on('click', '.addOption', function () {
+                var optionHtml = '<div class="input-group">' +
+                    '<div class="input-group-text">' +
+                    '<input type="checkbox" name="' + questionId + '" class="optionCheckbox">' +
+                    '</div>' +
+                    '<input type="text" class="form-control optionInput" placeholder="Введите вариант ответа">' +
+                    '<button class="btn btn-danger removeOption">Удалить вариант ответа</button>' +
+                    '</div>';
+
+                $(this).siblings('.optionsContainer').append(optionHtml);
+            });
+
+            $('#' + questionId).on('click', '.removeOption', function () {
+                $(this).parent().remove();
+            });
+
+            $('#' + questionId).on('click', '.removeQuestion', function () {
+                $(this).parent().parent().remove();
+            });
+        });
+
+        $('#addTextQuestion').click(function () {
+            questionCounter++;
+            var questionId = 'question' + questionCounter;
+
+            var questionHtml = '<div id="' + questionId + '" class="card mt-4">' +
+                '<div class="card-body">' +
+                '<input type="text" class="form-control questionInput" placeholder="Введите вопрос">' +
+                '<button class="btn btn-danger mt-2 removeQuestion">Удалить вопрос</button>' +
+                '<div class="textAnswerContainer mt-2">' +
+                '<label for="textAnswer">Текстовый ответ</label>' +
+                '<input type="text" id="textAnswer" class="form-control" placeholder="Введите ответ">' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+
+            $('#questionsContainer').append(questionHtml);
+
+            $('#' + questionId).on('click', '.removeQuestion', function () {
+                $(this).parent().parent().remove();
+            });
+        });
+
+        $('#saveTest').click(function () {
+            var test = {
+                lesson: $('#lessonSelect').val(),
+                questions: []
+            };
+
+            $('.card').each(function () {
+                var question = {
+                    text: $(this).find('.questionInput').val(),
+                    options: []
+                };
+
+                var questionId = $(this).attr('id');
+                var isSingleChoice = $(this).find('.optionRadio').length > 0;
+
+                if (isSingleChoice) {
+                    $(this).find('.optionInput').each(function () {
+                        question.options.push({
+                            text: $(this).val(),
+                            isCorrect: $(this).siblings('.input-group-text').find('.optionRadio').is(':checked')
+                        });
+                    });
+                } else {
+                    $(this).find('.optionInput').each(function () {
+                        question.options.push({
+                            text: $(this).val(),
+                            isCorrect: $(this).siblings('.input-group-text').find('.optionCheckbox').is(':checked')
+                        });
+                    });
+                }
+
+                test.questions.push(question);
+            });
+
+            $('.textAnswerContainer').each(function () {
+                var question = {
+                    text: $(this).siblings('.questionInput').val(),
+                    answer: $(this).find('#textAnswer').val()
+                };
+
+                test.questions.push(question);
+            });
+
+            var jsonData = JSON.stringify(test);
+            console.log(jsonData);
+            // Отправить jsonData на сервер или сохранить в файл
+        });
+    });
+</script>
+
+
