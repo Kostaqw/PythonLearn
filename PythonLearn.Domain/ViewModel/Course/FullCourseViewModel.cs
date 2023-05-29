@@ -11,6 +11,16 @@ namespace PythonLearn.Domain.ViewModel.Course
 
         [ValidateNever]
         public List<Lesson> Lessons { get; set; }
-
+        
+        /*
+        [ValidateNever]
+        public List<Test> Tests { get; set; }
+        
+        [ValidateNever]
+        public List<Lecture> Lectures { get; set; }
+        
+        [ValidateNever]
+        public List<Practice> Practices { get; set; }
+        */
     }
 }

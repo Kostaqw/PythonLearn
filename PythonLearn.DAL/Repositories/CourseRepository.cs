@@ -42,8 +42,12 @@ namespace PythonLearn.DAL.Repositories
             await _context.SaveChangesAsync();
         }
         public async Task<Course?> GetAsync(int id)
-        { 
-            var result = await _context.Courses.Include(c=>c.Lessons).FirstOrDefaultAsync(x => x.Id == id);
+        {
+            var result = await _context.Courses
+                .Include(c => c.Lessons).ThenInclude(a => a.Tests).ThenInclude(q=>q.Questions)
+                .Include(c => c.Lessons).ThenInclude(e => e.Lectures)
+                .Include(c => c.Lessons).ThenInclude(a => a.Practices)
+                .FirstOrDefaultAsync(x => x.Id == id);
             if (result == null)
             {
                 throw new ArgumentNullException("[CourseRepository] GetAsync(int id): the course isn't found");

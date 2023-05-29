@@ -2,14 +2,12 @@
 
 namespace PythonLearn.Domain.Entity
 {
-    public class Question
+    public class Answer
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int TestId { get; set; }
+        public int QuestionId { get; set; }
         public string Text { get; set; }
-        public string CorrectAnswer { get; set; }
-        public ICollection<Answer>? Answers { get; set; }
-        public Test Test { get; set; }
+        public bool IsCorrect { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PythonLearn.DAL;
 
@@ -11,9 +12,11 @@ using PythonLearn.DAL;
 namespace PythonLearn.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230527150328_mant")]
+    partial class mant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,6 +131,37 @@ namespace PythonLearn.DAL.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("PythonLearn.Domain.Entity.Element", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Answers")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discription")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<int>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Elements");
+                });
+
             modelBuilder.Entity("PythonLearn.Domain.Entity.Lecture", b =>
                 {
                     b.Property<int>("Id")
@@ -141,10 +175,6 @@ namespace PythonLearn.DAL.Migrations
 
                     b.Property<int>("LessonId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -168,10 +198,19 @@ namespace PythonLearn.DAL.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ElementId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LessonCommentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
+
+                    b.Property<int?>("SolutionId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("status")
                         .HasColumnType("bit");
@@ -179,6 +218,12 @@ namespace PythonLearn.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
+
+                    b.HasIndex("ElementId");
+
+                    b.HasIndex("LessonCommentId");
+
+                    b.HasIndex("SolutionId");
 
                     b.ToTable("Lessons");
                 });
@@ -224,10 +269,6 @@ namespace PythonLearn.DAL.Migrations
 
                     b.Property<int>("LessonId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Question")
                         .IsRequired()
@@ -300,10 +341,6 @@ namespace PythonLearn.DAL.Migrations
 
                     b.Property<int>("LessonId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -471,6 +508,18 @@ namespace PythonLearn.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("PythonLearn.Domain.Entity.Element", null)
+                        .WithMany("Lessons")
+                        .HasForeignKey("ElementId");
+
+                    b.HasOne("PythonLearn.Domain.Entity.LessonComment", null)
+                        .WithMany("Lessons")
+                        .HasForeignKey("LessonCommentId");
+
+                    b.HasOne("PythonLearn.Domain.Entity.Solution", null)
+                        .WithMany("Lessons")
+                        .HasForeignKey("SolutionId");
+
                     b.Navigation("course");
                 });
 
@@ -528,6 +577,11 @@ namespace PythonLearn.DAL.Migrations
                     b.Navigation("Lessons");
                 });
 
+            modelBuilder.Entity("PythonLearn.Domain.Entity.Element", b =>
+                {
+                    b.Navigation("Lessons");
+                });
+
             modelBuilder.Entity("PythonLearn.Domain.Entity.Lesson", b =>
                 {
                     b.Navigation("Lectures");
@@ -537,9 +591,19 @@ namespace PythonLearn.DAL.Migrations
                     b.Navigation("Tests");
                 });
 
+            modelBuilder.Entity("PythonLearn.Domain.Entity.LessonComment", b =>
+                {
+                    b.Navigation("Lessons");
+                });
+
             modelBuilder.Entity("PythonLearn.Domain.Entity.Question", b =>
                 {
                     b.Navigation("Answers");
+                });
+
+            modelBuilder.Entity("PythonLearn.Domain.Entity.Solution", b =>
+                {
+                    b.Navigation("Lessons");
                 });
 
             modelBuilder.Entity("PythonLearn.Domain.Entity.Test", b =>

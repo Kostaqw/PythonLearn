@@ -19,19 +19,20 @@
 
 
 <div class="container mt-4">
-    <h1>Система создания тестирования</h1>
-
-    <button id="addSingleChoiceQuestion" class="btn btn-primary">Добавить вопрос с одним вариантом ответа</button>
-    <button id="addMultipleChoiceQuestion" class="btn btn-primary">Добавить вопрос с несколькими вариантами ответа</button>
-    <button id="addTextQuestion" class="btn btn-primary">Добавить вопрос с текстовым ответом</button>
+    <h1>Cоздание тестирования</h1>
+    
+    <label for="testName">Название теста</label>
+    <input type="text" class="form-control" id="testName" />
 
     <div class="form-group mt-4">
         <label for="lessonSelect">Выберите урок:</label>
-        <select class="form-control" id="lessonSelect">
-            <option value="Урок 1">Урок 1</option>
-            <option value="Урок 2">Урок 2</option>
-            <option value="Урок 3">Урок 3</option>
-        </select>
+        <select class="form-control" id="lessonSelect" asp-items="@ViewBag.Lessons"></select>
+    </div>
+
+    <div class="form-group mt-4">
+        <button id="addSingleChoiceQuestion" class="btn btn-primary">Добавить вопрос с одним вариантом ответа</button>
+        <button id="addMultipleChoiceQuestion" class="btn btn-primary">Добавить вопрос с несколькими вариантами ответа</button>
+        <button id="addTextQuestion" class="btn btn-primary">Добавить вопрос с текстовым ответом</button>
     </div>
 
     <div id="questionsContainer" class="mt-4"></div>
@@ -153,6 +154,7 @@
 
         $('#saveTest').click(function () {
             var test = {
+                name: $('#testName').val(),
                 lesson: $('#lessonSelect').val(),
                 questions: []
             };
@@ -196,7 +198,18 @@
 
             var jsonData = JSON.stringify(test);
             console.log(jsonData);
-            // Отправить jsonData на сервер или сохранить в файл
+            
+            $.ajax({
+                url: "/Course/CreateTest",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data: jsonData,
+                success: function (response) {
+                },
+                error: function (xhr, status, error) {
+                }
+            });
         });
     });
 </script>

@@ -6,7 +6,8 @@ namespace PythonLearn.Domain.Entity
     public class Lesson
     {
         public int Id { get; set; }
- 
+        public int CourseId { get; set; }
+
 
         [Required]
         [MaxLength(60)]
@@ -14,12 +15,11 @@ namespace PythonLearn.Domain.Entity
    
         public bool status { get; set; }
 
-        public List<Element> Elements { get; set; }
+        public virtual Course course { get; set; }
 
-        public List<LessonComment> LessonComments { get; set; }
-
-        public List<Solution> Solutions { get; set; }
-
+        public List<Lecture>? Lectures { get; set; }
+        public List<Test>? Tests { get; set; }
+        public List<Practice>? Practices { get; set; }
 
     }
 }

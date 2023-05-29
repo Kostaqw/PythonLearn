@@ -21,10 +21,11 @@ namespace PythonLearn.DAL
         {
 
         }*/
+
+        public DbSet<Answer> Answers { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<ArticleComment> ArticleComments { get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<Element> Elements { get; set; }
         public DbSet<Lecture> Lectures { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<LessonComment> LessonComments { get; set; }

@@ -1,169 +1,97 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
-using PythonLearn.Domain.ViewModel.User;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using PythonLearn.Domain.Entity;
+using PythonLearn.Domain.ViewModel.Course;
 using PythonLearn.Service.interfaces;
-using System.Security.Claims;
-using System.Linq;
-using AutoMapper;
-using PythonLearn.DAL.other;
-using Microsoft.AspNetCore.Http;
-using System.Collections;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text;
 
 namespace PythonLearn.Controllers
 {
     public class CourseController : Controller
     {
-        private readonly IAccountService _service;
-        private readonly IUserService _userService;
-        private readonly IMapper _mapper;
+        private readonly ICourseService _service;
 
-        /// <summary>
-        /// Конструктор для dependence injactive
-        /// </summary>
-        /// <param name="context">Контекст</param>
-        public CourseController(IAccountService service, IUserService userService, IMapper mapper)
+        public CourseController(ICourseService service)
         {
             _service = service;
-            _userService = userService;
-            _mapper = mapper;
         }
 
-        /// <summary>
-        /// Отобразить окно регистрации
-        /// </summary>
-        /// <returns>Представление Register</returns>
         [HttpGet]
-        public IActionResult Create() => View();
-
-        [HttpGet]
-        public IActionResult Create2() => View();
-        
-        [HttpGet]
-        public IActionResult Create3() => View();
-
-        /// <summary>
-        /// Отправить данные для попытки регистрации
-        /// </summary>
-        /// <param name="model">Вью модель регистрации пользователя</param>
-        /// <returns>Перенаправялет на домашнию страницу</returns>
-        [HttpPost]
-        public async Task<IActionResult> Register(UserRegistorViewModel model)
+        public async Task<IActionResult> Main(int id)
         {
-            if (ModelState.IsValid)
-            {
-                var response = await _service.Register(model);
-                if (response.StatusCode == Domain.Enum.StatusCode.OK)
-                {
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(response.Data));
-
-                    return RedirectToAction("Index", "Home");
-                }
-                ModelState.AddModelError("", response.Description);
-            }
-            return View(model);
+            var course = await _service.GetFullCourse(id);
+            return View(course.Data);
         }
 
-        /// <summary>
-        /// Отобразить окно входа на сайт
-        /// </summary>
-        /// <returns>Представление Login</returns>
         [HttpGet]
-        public IActionResult Login() => View();
-
-        /// <summary>
-        /// Отправить данные для попытки входа
-        /// </summary>
-        /// <param name="model">Логин вью модель</param>
-        /// <returns>Перенаправялет на домашнию страницу</returns>
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Lecture(int id)
         {
-            if (ModelState.IsValid)
-            {
-                var response = await _service.Login(model);
-                if (response.StatusCode == Domain.Enum.StatusCode.OK)
-                {
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(response.Data));
-
-                    var userModel = _userService.GetUsersAsync().Result.Data.FirstOrDefault(x => x.Login == model.UserName);
-
-                    var userViewModel = new UserViewModel()
-                    {
-                        Login = userModel.Login,
-                        Email = userModel.Email,
-                        Id = userModel.Id,
-                        Name = userModel.Name,
-                        SecondName = userModel.SecondName
-                    };
-
-                    return RedirectToAction("Index", "Home", userViewModel);
-                }
-                ModelState.AddModelError("", response.Description);
-            }
-            return View(model);
+            var lecture = await _service.GetLecture(id);
+            return View(lecture.Data);
         }
 
-        /// <summary>
-        /// Выход из аккаунта
-        /// </summary>
-        /// <returns>Перенаправялет на домашнию страницу</returns>
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
-        { 
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Home");
-        }
-
-
-        /// <summary>
-        /// Отобразить окно входа на сайт
-        /// </summary>
-        /// <returns>Представление Login</returns>
         [HttpGet]
-        public IActionResult Profile()
+        public async Task<IActionResult> CreateTest()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                var user = _userService.GetUsersAsync().Result.Data.FirstOrDefault(x => x.Login == User.Identity.Name);
+            var lessons = await _service.GetLessons();
 
-                var userViewModel = _mapper.Map<UserViewModel>(user);
-                return View(userViewModel);
-            }
+            ViewBag.Lessons = new SelectList(lessons.Data, "Id", "Name");
+
             return View();
         }
 
-
-        /// <summary>
-        /// Изменение профиля пользователя
-        /// </summary>
-        /// <param name="model">Вью модель пользователя</param>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<IActionResult> Profile(UserViewModel model)
+        [HttpGet]
+        public async Task<IActionResult> CreateLecture()
         {
-            var user = _userService.GetUsersAsync().Result.Data.FirstOrDefault(x => x.Login == User.Identity.Name);
-            if (user != null)
+            var lessons = await _service.GetLessons();
+
+            ViewBag.Lessons = new SelectList(lessons.Data, "Id", "Name");
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTest([FromBody] TestViewModel test)
+        {
+            var testEntity = new Test()
             {
-                model.Email = user.Email;
-                model.Login= user.Login;
-                model.Image = user.avatar;
-                model.Id = user.Id;
-                if (ModelState.IsValid)
+                LessonId = test.Lesson,
+                Name = test.Name
+            };
+
+            await _service.CreateTest(testEntity);
+
+            foreach (var questionViewModel in test.Questions)
+            {
+                var correctAnswer = new StringBuilder();
+
+                foreach (var answer in questionViewModel.Options)
                 {
-                    var response = await _service.EditAccount(model);
-                    if (response.StatusCode == Domain.Enum.StatusCode.OK)
+                    correctAnswer.Append(answer.ToString());
+                }
+                var questionEntity = new Question
+                {
+                    TestId = testEntity.Id,
+                    Text = questionViewModel.Text,
+                    CorrectAnswer = correctAnswer.ToString()
+                };
+
+                await _service.CreateQuest(questionEntity);
+
+                foreach (var optionViewModel in questionViewModel.Options)
+                {
+                    var optionEntity = new Answer
                     {
-                        return RedirectToAction("Index", "Home", model.Login);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", response.Description);
-                    }
+                        QuestionId = questionEntity.Id,
+                        Text = optionViewModel.Text,
+                        IsCorrect = optionViewModel.IsCorrect
+                    };
+
+                    await _service.CreateAnswer(optionEntity);
                 }
             }
-            return View(model);
+            return Ok();
         }
+
     }
 }

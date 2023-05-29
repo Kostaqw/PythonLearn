@@ -36,11 +36,11 @@
                     <nav>
                         <ul class="menu d-flex justify-content-end">
                             <li class="menu__item"><a href="/"><i class="fas fa-home"></i></a></li>
-                            <li class="menu__item"><a href="#about">About</a></li>
-                            <li class="menu__item"><a href="#service">Servicing</a></li>
-                            <li class="menu__item"><a href="#portfolio">Portfolio</a></li>
-                            <li class="menu__item"><a href="#blog">Blog</a></li>
-                            <li class="menu__item"><a href="#contact">Contact us</a></li>
+                            <li class="menu__item"><a href="#about">О нас</a></li>
+                            <li class="menu__item"><a href="#service">Возможности</a></li>
+                            <li class="menu__item"><a href="#portfolio">Обучение</a></li>
+                            <li class="menu__item"><a href="#blog">Блог</a></li>
+                            <li class="menu__item"><a href="#contact">Контакты</a></li>
                             <li class="menu__item">
                                 @if (Model.Name != null)
                                 {
@@ -65,8 +65,8 @@
                 <div class="col-xl-12">
                     <h1 class="header__title">Обучение python с нуля</h1>
                     <p class="header__text"></p>
-                    <button class="button">Обучение</button>
-                    <button class="button">Блог</button>
+                    <button class="button" onclick="location.href='/course/main?id=1'">Обучение</button>
+                    <button class="button" onclick="location.href='/Article/Articles'">Блог</button>
                 </div>
             </div>
         </div>
@@ -84,22 +84,22 @@
             <div class="row justify-content-around">
                 <div class="col-xl-3 col-md-6">
                     <img src="~/images/icon1.png" alt="">
-                    <h3 class="about__h3">title</h3>
+                    <h3 class="about__h3">Онлайн обучение</h3>
                     <p class="about__text">Данный курс можно проходить из любого места где есит интернет</p>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <img src="~/images/icon2.png" alt="">
-                    <h3 class="about__h3">title</h3>
+                    <h3 class="about__h3">Лекции</h3>
                     <p class="about__text">В курсе предоставлена большая теоретическая база, как по python там и в общем по програмированию</p>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <img src="~/images/icon3.png" alt="">
-                    <h3 class="about__h3">title</h3>
+                    <h3 class="about__h3">Практические задания</h3>
                     <p class="about__text">После изучения теоретической части, есть возможность закрепить навыки выполняя задачи прямо в браузере</p>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <img src="~/images/icon3.png" alt="">
-                    <h3 class="about__h3">title</h3>
+                    <h3 class="about__h3">Общение</h3>
                     <p class="about__text">После решения задач, их можно обсудить с другими обучающими</p>
                 </div>
             </div>

@@ -17,7 +17,5 @@ namespace PythonLearn.Domain.Entity
         [MaxLength(300)]
         public string CommentText { get; set; }
 
-        [ValidateNever]
-        public List<Lesson> Lessons { get; set; }
     }
 }

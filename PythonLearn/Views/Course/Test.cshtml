@@ -1,4 +1,4 @@
-@model PythonLearn.Domain.ViewModel.Article.CompleteArticle
+@model PythonLearn.Domain.Entity.Lecture
 
 @{
     ViewData["Title"] = "Python";
@@ -36,14 +36,14 @@
                 </div>
                 <div class="col-xl-9 ml-auto align-self-center">
                     <nav>
-                         <ul class="menu d-flex justify-content-end">
-                            <li class="menu__item"><a href="/"><i class="fas fa-home"></i></a></li>
-                            <li class="menu__item"><a href="#about">О нас</a></li>
-                            <li class="menu__item"><a href="#service">Возможности</a></li>
-                            <li class="menu__item"><a href="#portfolio">Обучение</a></li>
-                            <li class="menu__item"><a href="#blog">Блог</a></li>
-                            <li class="menu__item"><a href="#contact">Контакты</a></li>
-                            <li class="menu__item">
+                        <ul class="menu d-flex justify-content-end">
+                            <li class="menu__item"><a href="index.html"><i class="fas fa-home"></i></a></li>
+                            <li class="menu__item"><a href="#about">About</a></li>
+                            <li class="menu__item"><a href="#service">Servicing</a></li>
+                            <li class="menu__item"><a href="#portfolio">Portfolio</a></li>
+                            <li class="menu__item"><a href="#blog">Blog</a></li>
+                            <li class="menu__item"><a href="#contact">Contact us</a></li>
+                            <li class="menu__item"><i class="fa-solid fa-magnifying-glass"></i></li>
                         </ul>
                     </nav>
                 </div>
@@ -64,51 +64,22 @@
     <section class="articles">
         <div class="container ">
             <div class="article ">
-                <div class="row clearfix">
-                    <div class="col-xl-1 ">
-                        <img class="articles_avatar" src="data:image;base64,@System.Convert.ToBase64String(Model.user.avatar)">
-                    </div>
-                    <div class="col-xl-2">
-                        <p class="article_author">
-                            @Model.user.Login <br>
-                            @Model.CreatedDate
-                        </p>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-xl-10">
                         <p class="articles__header">
-                            
+                            @Model.Name
                         </p>
                     </div>
                 </div>
                 <div class="row article__content">
                     <div class="col-xl-10">
-                        @Html.Raw(Model.ArticleText);
+                        @Html.Raw(Model.Text);
                     </div>
                 </div>
-
-
-
-
-                @*<div class="row">
-                    <div class="col-xl-10 tag">
-                        <span>
-                            <a href="#">Программирование</a>
-                        </span>
-                        <span>
-                            <a href="#">.Net</a>
-                        </span>
-                        <span>
-                            <a href="#">C#</a>
-                        </span>
-                    </div>
-                </div>
-                *@
 
                 <div class="row article__content navigation justify-content-center">
                     <div class="col-xl-3">
-                        <a asp-controller="Article" asp-action="Articles"> <<Назад </a>
+                        <a asp-controller="Course" asp-action="Main" asp-route-id="1" > <<Назад </a>
                     </div>
                 </div>
 

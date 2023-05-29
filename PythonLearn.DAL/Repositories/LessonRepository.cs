@@ -63,7 +63,7 @@ namespace PythonLearn.DAL.Repositories
 
         public IQueryable<Lesson> GetAllAsync()
         {
-            var result = _context.Lessons;
+            var result = _context.Lessons.Include(c=>c.Tests).Include(d=>d.Lectures).Include(e=>e.Practices);
             if (result == null)
             {
                 throw new ArgumentNullException("[LessonRepository] GetAllAsync(): the lessons arn't found");

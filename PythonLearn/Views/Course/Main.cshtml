@@ -1,4 +1,4 @@
-@model PythonLearn.Domain.ViewModel.Article.CompleteArticle
+@model PythonLearn.Domain.ViewModel.Course.FullCourseViewModel
 
 @{
     ViewData["Title"] = "Python";
@@ -24,78 +24,57 @@
 </head>
 
 <body>
-    <div id="toTop"><i class="fas fa-chevron-up"></i></div>
-    <header class="menu-bar">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-1 logo-bar">
-                    <img src="img/logo.png" alt="Main logo" class="logo">
-                    <button class="menu-icon">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-                <div class="col-xl-9 ml-auto align-self-center">
-                    <nav>
-                        <ul class="menu d-flex justify-content-end">
-                            <li class="menu__item"><a href="index.html"><i class="fas fa-home"></i></a></li>
-                            <li class="menu__item"><a href="#about">About</a></li>
-                            <li class="menu__item"><a href="#service">Servicing</a></li>
-                            <li class="menu__item"><a href="#portfolio">Portfolio</a></li>
-                            <li class="menu__item"><a href="#blog">Blog</a></li>
-                            <li class="menu__item"><a href="#contact">Contact us</a></li>
-                            <li class="menu__item"><i class="fa-solid fa-magnifying-glass"></i></li>
+    <h1>@Model.Name</h1>
+    <p>@Model.Description</p>
+
+    <div class="container">
+        <h2>Курс:</h2>
+        <ul class="list-group">
+            @foreach (var lesson in Model.Lessons)
+            {
+                <li class="list-group-item">
+                    <a href="@Url.Action("Lesson", "Course", new { lessonId = lesson.Id })">@lesson.Name</a>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>Лекции:</h3>
+                                <ul class="list-group">
+                                    @foreach (var lecture in lesson.Lectures)
+                                    {
+                                        <li class="list-group-item">
+                                            <a href="@Url.Action("Lecture", "Course", new { Id = lecture.Id })">@lecture.Text</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>Практические задачи:</h3>
+                                <ul class="list-group">
+                                    @foreach (var practice in lesson.Practices)
+                                    {
+                                        <li class="list-group-item">
+                                            <a href="@Url.Action("Practice", "Course", new { practiceId = practice.Id })">@practice.Question</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h3>Тесты:</h3>
+                        <ul class="list-group">
+                            @foreach (var test in lesson.Tests)
+                            {
+                                <li class="list-group-item">
+                                    <a href="@Url.Action("Test", "Course", new { testId = test.Id })">Test @test.Id</a>
+                                </li>
+                            }
                         </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <header class="user_card_header">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-10 ">
-                    <p class="usercard__text">@Model.Name</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section class="articles">
-        <div class="container ">
-            <div class="article ">
-                <div class="row clearfix">
-                    <div class="col-xl-1 ">
-                        <img class="articles_avatar" src="data:image;base64,@System.Convert.ToBase64String(Model.user.avatar)">
                     </div>
-                    <div class="col-xl-2">
-                        <p class="article_author">
-                            @Model.user.Login <br>
-                            @Model.CreatedDate
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-10">
-                        <p class="articles__header">
-                            
-                        </p>
-                    </div>
-                </div>
-                <div class="row article__content">
-                    <div class="col-xl-10">
-                        @Html.Raw(Model.ArticleText);
-                    </div>
-                </div>
-
-
-
-
-                <div class="row article__content navigation justify-content-center">
-                    <div class="col-xl-3">
-                        <a asp-controller="Article" asp-action="Articles"> <<Назад </a>
-                    </div>
-                </div>
+                </li>
+            }
+        </ul>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

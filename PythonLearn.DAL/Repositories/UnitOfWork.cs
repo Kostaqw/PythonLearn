@@ -5,16 +5,18 @@ namespace PythonLearn.DAL.Repositories
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
         private readonly ApplicationDbContext context;
+        private AnswerRepository answerRepository;
         private ArticleCommentRepository articleCommentRepository;
         private ArticleRepository articleRepository;
         private CourseRepository courseRepository;
-        private ElementRepository elementRepository;
         private LectureRepository lectureRepository;
         private LessonCommentRepository lessonCommentsRepositories;
         private LessonRepository lessonRepository;
-        private UserRepository userRepository;
+        private PracticeRepository practiceRepository;
         private SolutionRepository solutionRepository;
         private TitleRepository titleRepository;
+        private TestRepository testRepository;
+        private UserRepository userRepository;
         private QuestionRepository questionRepository;
         
         public UnitOfWork(ApplicationDbContext context)
@@ -22,6 +24,17 @@ namespace PythonLearn.DAL.Repositories
             this.context = context;
         }
 
+        public AnswerRepository AnswerRepository
+        {
+            get
+            { 
+                if(answerRepository == null) 
+                {
+                    answerRepository = new AnswerRepository(context);
+                }
+                return answerRepository;
+            }
+        }
         public ArticleCommentRepository ArticleCommentRepository
         {
             get
@@ -57,17 +70,19 @@ namespace PythonLearn.DAL.Repositories
             }
         }
 
-        public ElementRepository ElementRepositories
+      
+        public LectureRepository LectureRepositories
         {
             get
             {
-                if (elementRepository == null)
+                if (lectureRepository == null)
                 {
-                    elementRepository = new ElementRepository(context);
+                    lectureRepository = new LectureRepository(context);
                 }
-                return elementRepository;
+                return lectureRepository;
             }
         }
+
         public LessonCommentRepository LessonCommentsRepositories
         {
             get
@@ -128,17 +143,7 @@ namespace PythonLearn.DAL.Repositories
             }
         }
 
-        public LectureRepository LectureRepositories
-        {
-            get
-            {
-                if (lectureRepository == null)
-                {
-                    lectureRepository = new LectureRepository(context);
-                }
-                return lectureRepository;
-            }
-        }
+
 
         public QuestionRepository QuestionRepositories
         {
@@ -151,6 +156,32 @@ namespace PythonLearn.DAL.Repositories
                 return questionRepository;
             }
         }
+
+        public TestRepository TestRepositories
+        {
+            get
+            {
+                if (testRepository == null)
+                { 
+                    testRepository = new TestRepository(context);
+                }
+                return testRepository;
+            }
+        }
+
+        public PracticeRepository PracticeRepositories
+        {
+            get
+            {
+                if (practiceRepository == null)
+                { 
+                    practiceRepository = new PracticeRepository(context); 
+                }
+                return practiceRepository;
+            }
+        }
+
+
 
         public void Save()
         {

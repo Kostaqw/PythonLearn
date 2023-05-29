@@ -9,6 +9,7 @@ namespace PythonLearn.Domain.Entity
     public class Practice
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public int LessonId { get; set; }
         public string Question { get; set; }
         public string CorrectAnswer { get; set; }

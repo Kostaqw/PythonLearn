@@ -40,18 +40,17 @@ namespace PythonLearn.DAL.Repositories
                 throw new ArgumentNullException("[TestRepository] UpdateAsync(int id): the test isn't found");
             }
 
-            if (!string.IsNullOrEmpty(entity.Lesson))
+            if (entity.Questions != null)
             {
-                test.Lesson = entity.Lesson;
+                test.Questions = entity.Questions;
             }
-
 
             await _context.SaveChangesAsync();
         }
 
         public async Task<Test> GetAsync(int id)
         {
-            var result = await _context.Tests.FirstOrDefaultAsync(x => x.Id == id);
+            var result = await _context.Tests.Include(c=>c.Questions).FirstOrDefaultAsync(x => x.Id == id);
             if (result == null)
             {
                 throw new ArgumentNullException("[TestRepository] GetAsync(int id): the test isn't found");
@@ -64,7 +63,7 @@ namespace PythonLearn.DAL.Repositories
 
         public IQueryable<Test> GetAllAsync()
         {
-            var result = _context.Tests;
+            var result = _context.Tests.Include(c=>c.Questions);
             if (result == null)
             {
                 throw new ArgumentNullException("[TestRepository] GetAllAsync(): the tests aren't found");
