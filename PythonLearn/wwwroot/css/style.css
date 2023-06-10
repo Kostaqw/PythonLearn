@@ -96,6 +96,13 @@ body{
     font-size: 20px;
 }
 
+.aboutContent {
+    padding-top: 20px;
+    padding-bottom: 25px;
+    color: black;
+    background: white;
+    text-align: center;
+}
 /*services*/
 .services{
     padding-top: 165px;

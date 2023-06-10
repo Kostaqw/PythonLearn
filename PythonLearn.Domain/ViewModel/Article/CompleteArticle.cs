@@ -10,11 +10,11 @@ namespace PythonLearn.Domain.ViewModel.Article
         public int ArticleId { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(100)]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(300)]
+        [StringLength(1000)]
         public string ShortDescription { get; set; }
 
         [Required]

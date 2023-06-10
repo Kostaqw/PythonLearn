@@ -10,6 +10,7 @@
     <Folder Include="Models\ViewComponents\" />
     <Folder Include="Services\" />
     <Folder Include="wwwroot\images\articles\" />
+    <Folder Include="wwwroot\images\lectures\" />
   </ItemGroup>
 
   <ItemGroup>

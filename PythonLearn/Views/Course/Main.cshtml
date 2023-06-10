@@ -24,6 +24,31 @@
 </head>
 
 <body>
+    <header class="menu-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-1 logo-bar">
+                    <img src="~/images/logo.png" alt="Main logo" class="logo">
+                    <button class="menu-icon">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="col-xl-9 ml-auto align-self-center">
+                    <nav>
+                        <ul class="menu d-flex justify-content-end">
+                            <li class="menu__item"><a href="/"><i class="fas fa-home"></i></a></li>
+                            <li class="menu__item"><a href="#about">О нас</a></li>
+                            <li class="menu__item"><a href="#service">Возможности</a></li>
+                            <li class="menu__item"><a href="#portfolio">Обучение</a></li>
+                            <li class="menu__item"><a href="#blog">Блог</a></li>
+                            <li class="menu__item"><a href="#contact">Контакты</a></li>
+                            <li class="menu__item">
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
     <h1>@Model.Name</h1>
     <p>@Model.Description</p>
 
@@ -33,7 +58,7 @@
             @foreach (var lesson in Model.Lessons)
             {
                 <li class="list-group-item">
-                    <a href="@Url.Action("Lesson", "Course", new { lessonId = lesson.Id })">@lesson.Name</a>
+                    <h4><a href="@Url.Action("Lesson", "Course", new { lessonId = lesson.Id })">@lesson.Name</a></h4>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6">
@@ -42,7 +67,7 @@
                                     @foreach (var lecture in lesson.Lectures)
                                     {
                                         <li class="list-group-item">
-                                            <a href="@Url.Action("Lecture", "Course", new { Id = lecture.Id })">@lecture.Text</a>
+                                            <a href="@Url.Action("Lecture", "Course", new { Id = lecture.Id })">@lecture.Name</a>
                                         </li>
                                     }
                                 </ul>
@@ -66,7 +91,7 @@
                             @foreach (var test in lesson.Tests)
                             {
                                 <li class="list-group-item">
-                                    <a href="@Url.Action("Test", "Course", new { testId = test.Id })">Test @test.Id</a>
+                                    <a href="@Url.Action("Test", "Course", new { testId = test.Id })">Test @test.Name</a>
                                 </li>
                             }
                         </ul>

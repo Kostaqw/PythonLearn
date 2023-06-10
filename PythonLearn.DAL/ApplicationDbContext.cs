@@ -16,11 +16,6 @@ namespace PythonLearn.DAL
         {
             Database.EnsureCreated();
         }
-        /*
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-
-        }*/
 
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Article> Articles { get; set; }

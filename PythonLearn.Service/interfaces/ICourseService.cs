@@ -13,7 +13,7 @@ namespace PythonLearn.Service.interfaces
         Task<IBaseResponse<List<Lesson>>> GetLessons();
         Task<IBaseResponse<bool>> CreateCourse(Course course);
         Task<IBaseResponse<bool>> CreateLesson(Lesson lesson);
-        Task<IBaseResponse<bool>> CreateLecture(Lecture lecture);
+        Task<IBaseResponse<bool>> CreateLecture(LectureViewModel lecture);
         Task<IBaseResponse<bool>> CreateTest(Test test);
         Task<IBaseResponse<bool>> CreatePractice(Practice practice);
         Task<IBaseResponse<bool>> CreateQuest(Question question);

@@ -228,7 +228,7 @@ namespace PythonLearn.Service.implementation
             }
         }
 
-        public async Task<IBaseResponse<bool>> CreateLecture(Lecture lecture)
+        public async Task<IBaseResponse<bool>> CreateLecture(LectureViewModel lecture)
         {
             try
             {
@@ -377,9 +377,17 @@ namespace PythonLearn.Service.implementation
         {
             await _context.CourseRepositories.CreateAsync(course);
         }
-        private async Task LectureCreation(Lecture lecture)
+        private async Task LectureCreation(LectureViewModel lecture)
         {
-            await _context.LectureRepositories.CreateAsync(lecture);
+            var newLecture = new Lecture()
+            {
+                Text = lecture.Text,
+                Name = lecture.Name,
+                LessonId = lecture.LessonId,
+                IsComplited = false
+            };
+
+            await _context.LectureRepositories.CreateAsync(newLecture);
         }
 
         private async Task LessonCreation(Lesson lesson)

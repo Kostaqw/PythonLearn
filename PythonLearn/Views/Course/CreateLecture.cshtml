@@ -24,34 +24,63 @@
 
 <body>
     <div id="toTop"><i class="fas- fa-chevron-up"></i></div>
-  
-    <section class="about" id="about">
-  
+    <header class="menu-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-1 logo-bar">
+                    <img src="~/images/logo.png" alt="Main logo" class="logo">
+                    <button class="menu-icon">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="col-xl-9 ml-auto align-self-center">
+                    <nav>
+                        <ul class="menu d-flex justify-content-end">
+                            <li class="menu__item"><a href="/"><i class="fas fa-home"></i></a></li>
+                            <li class="menu__item"><a href="#about">О нас</a></li>
+                            <li class="menu__item"><a href="#service">Возможности</a></li>
+                            <li class="menu__item"><a href="#portfolio">Обучение</a></li>
+                            <li class="menu__item"><a href="#blog">Блог</a></li>
+                            <li class="menu__item"><a href="#contact">Контакты</a></li>
+                            <li class="menu__item">Kostaqw</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="aboutContent" id="about">
         <form method="post" asp-controller="Course" asp-action="CreateLecture" enctype="multipart/form-data">
             <div class="container">
                 <div class="row">
-                    <div class="form-group mt-4">
-                        <label for="lessonSelect">Выберите урок:</label>
-                        <select class="form-control" id="lessonSelect" asp-items="@ViewBag.Lessons"></select>
+                    <div class="col">
+                        <div class="form-group mt-4">
+                            <label for="lessonSelect">Выберите урок:</label>
+                            <select asp-for="LessonId" class="form-control" id="lessonSelect" asp-items="@ViewBag.Lessons"></select>
+                        </div>
                     </div>
-                 </div>
-                <div class="row">
-                    <label for="testName">Название лекции</label>
-                    <input type="text" class="form-control" id="testName" />
                 </div>
-                <div class="row mt-4" >
-                    <div class="text-center">
+                <div class="row">
+                    <div class="col">
+                        <label id="lectureName" for="testName">Название лекции</label>
+                        <input asp-for="Name" type="text" class="form-control" id="testName" />
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col text-center">
                         <textarea name="content" id="editor" class="form-control"></textarea>
                     </div>
                 </div>
-                    <div class="text-center">
+                <div class="row mt-4">
+                    <div class="col text-center">
                         <button type="submit" class="register_button" value="ОТПРАВИТЬ">Создать</button>
                     </div>
                 </div>
             </div>
         </form>
-
     </section>
+
     
     <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -148,7 +177,7 @@
             _sendRequest(file) {
                 // Prepare the form data.
                 const data = new FormData();
-                var folderName= document.getElementById('titleName').value;
+                var folderName = document.getElementById('lectureName').value;
                 data.append('upload', file);
                 data.append('folder', folderName);
                 // Important note: This is the right place to implement security mechanisms

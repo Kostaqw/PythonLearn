@@ -50,17 +50,21 @@
         </div>
     </header>
 
-    <section class="about" id="about">
+    <section class="aboutContent" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-xl-10">
                     <form method="post" asp-controller="Article" asp-action="Create" enctype="multipart/form-data">
                         <div class="row mt-3">
-                            <input id="titleName" asp-for="Name" placeholder="Заголовок" type="text">
+                            <div class="col">
+                                <input id="titleName" asp-for="Name" placeholder="Заголовок" type="text" class="form-control">
+                            </div>
                         </div>
 
                         <div class="row mt-3">
-                            <input asp-for="ShortDescription" placeholder="Краткое описание" type="text">
+                            <div class="col">
+                                <input asp-for="ShortDescription" placeholder="Краткое описание" type="text" class="form-control">
+                            </div>
                         </div>
 
                         <div class="text-center mt-3">
@@ -75,6 +79,7 @@
             </div>
         </div>
     </section>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"

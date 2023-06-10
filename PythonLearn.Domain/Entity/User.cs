@@ -36,7 +36,6 @@ namespace PythonLearn.Domain.Entity
         [MaxLength(400)]
         public string AboutMe { get; set; }
 
-  
         public byte[] avatar { get; set; }
 
         [Required]
