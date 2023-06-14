@@ -69,7 +69,6 @@ namespace PythonLearn.Service.implementation
                     StatusCode = Domain.Enum.StatusCode.InternalServerError,
                 };
             }
-
         }
 
         /// <summary>
@@ -209,7 +208,8 @@ namespace PythonLearn.Service.implementation
                 new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.ToString())
             };
 
-            return new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            return new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
+                ClaimsIdentity.DefaultRoleClaimType);
         }
     }
 }

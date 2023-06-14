@@ -4,5 +4,6 @@ namespace PythonLearn.DAL
 {
     public interface IUserRepository: IBaseRepository<User>
     {
+      
     }
 }
