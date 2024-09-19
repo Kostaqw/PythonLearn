@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PythonLearn.Domain.Entity.Answer">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIACAQAAAA=</HashCode>
+      <FileName>Entity\Answer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Entity.Article">
+    <Position X="2.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAEAEAAAQAAgAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Entity\Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Entity.Course">
+    <Position X="5.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Entity\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Entity.Lecture">
+    <Position X="4" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAEAAEAAAAAAAAQAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Entity\Lecture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Entity.Lesson" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQGAAAAAAAAgAAAAABAAAQgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Lesson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Entity.Practice">
+    <Position X="4" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAEAAEAAAAAAAAQAAAAAAABEAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Practice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Entity.Question">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAEAAAAAAAAAABAQAAACAAAAAA=</HashCode>
+      <FileName>Entity\Question.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Entity.Solution">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAEAAAAAAAAiAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Solution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Entity.Test">
+    <Position X="7.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAQAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Test.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Entity.Title">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAgAAAAAAAAAAAQAEAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Title.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Entity.User">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACABgAACAAAAAAEAAAAAQECAAIAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Entity\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.Response.BaseResponse&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAABAAIAAAAAAAAAA=</HashCode>
+      <FileName>Response\BaseResponse.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PythonLearn.Domain.ViewModel.Article.CompleteArticle">
+    <Position X="7.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAEAAAQAAwAAAAAAAAAggAAAAAAAQA=</HashCode>
+      <FileName>ViewModel\Article\CompleteArticle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.ViewModel.Course.FullCourseViewModel">
+    <Position X="11" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>ViewModel\Course\FullCourseViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.ViewModel.Course.LectureViewModel">
+    <Position X="9.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>ViewModel\Course\LectureViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.ViewModel.Course.OptionViewModel">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIACAAAAAA=</HashCode>
+      <FileName>ViewModel\Course\OptionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.ViewModel.Course.QuestionViewModel">
+    <Position X="11" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACABAAAA=</HashCode>
+      <FileName>ViewModel\Course\QuestionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.ViewModel.Course.TestViewModel">
+    <Position X="9.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAQAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Course\TestViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.ViewModel.User.LoginViewModel">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\User\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.ViewModel.User.UserRegistorViewModel">
+    <Position X="9.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAAAAAAAAAAAAQECAAIAAACAAAQAAAAIAA=</HashCode>
+      <FileName>ViewModel\User\UserRegistorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PythonLearn.Domain.ViewModel.User.UserViewModel">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAACAAAAAAAAAAAAQECAAIABAAAAAQAAAAAAA=</HashCode>
+      <FileName>ViewModel\User\UserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="PythonLearn.Domain.Interface.IBaseResponse&lt;T&gt;">
+    <Position X="2.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAABAAIAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IBaseResponse.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="PythonLearn.Domain.Enum.ElementType">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAIAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Enum\ElementType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PythonLearn.Domain.Enum.Roles">
+    <Position X="4" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enum\Roles.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PythonLearn.Domain.Enum.StatusCode">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAIAAAAAAAAAAAAAAIAAAEAAAEAAAABAAAACAA=</HashCode>
+      <FileName>Enum\StatusCode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

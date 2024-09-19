@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PythonLearn.Domain.Entity;
+using PythonLearn.DAL;
 using PythonLearn.Models;
 using System.Diagnostics;
+using PythonLearn.DAL.Repositories;
+using University.DAL.Interfaces;
+using PythonLearn.Domain.ViewModel.User;
 
 namespace PythonLearn.Controllers
 {
@@ -13,9 +18,9 @@ namespace PythonLearn.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(UserViewModel viewModel)
         {
-            return View();
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
